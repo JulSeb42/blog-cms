@@ -12,11 +12,51 @@ import Icon from "../ui/Icon"
 import convertDate from "../utils/convertDate"
 
 // Styles
-const Container = styled.div``
+const Container = styled.div`
+    padding-bottom: ${Variables.Margins.M};
+    display: flex;
+    align-items: flex-start;
+`
 
-const TextContainer = styled.div``
+const TextContainer = styled.div`
+    flex-grow: 1;
+    margin-right: ${Variables.Margins.S};
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: ${Variables.Margins.XS};
 
-const IconsContainer = styled.div``
+    p {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+`
+
+const IconsContainer = styled.div`
+    display: flex;
+    align-items: center;
+
+    a:first-child {
+        margin-right: ${Variables.Margins.XXS};
+    }
+`
+
+const IconButton = styled(Link)`
+    --size: 32px;
+    width: var(--size);
+    height: var(--size);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: ${Variables.Colors.Primary};
+    transition: ${Variables.Transitions.Short};
+
+    &:hover {
+        background-color: ${Variables.Colors.LightGray};
+        color: ${Variables.Colors.Primary70};
+    }
+`
 
 function CardPost({ post, ...props }) {
     return (
@@ -28,20 +68,33 @@ function CardPost({ post, ...props }) {
                     </Link>
                 </Font.P>
 
-                <Font.Label>
-                    Written by <strong>{post.author.fullName}</strong>{" "}
-                    on {convertDate(post.date)} at {post.time}.
+                <Font.Label as="small">
+                    Written by <strong>{post.author.fullName}</strong> on{" "}
+                    {convertDate(post.date)} at {post.time}.
                 </Font.Label>
+
+                {post.dateEdited && (
+                    <Font.Label as="small">
+                        Edited on {convertDate(post.dateEdited)} at{" "}
+                        {post.timeEdited}
+                    </Font.Label>
+                )}
             </TextContainer>
 
             <IconsContainer>
-                <Link to={`/posts/${post.category}/${post.slug}`}>
-                    <Icon name="file" size={16} color="currentColor" />
-                </Link>
+                <IconButton
+                    to={`/posts/${post.category}/${post.slug}`}
+                    aria-label="Read post"
+                >
+                    <Icon name="file" size={24} color="currentColor" />
+                </IconButton>
 
-                <Link to={`/dashboard/posts/${post._id}`}>
-                    <Icon name="edit" size={16} color="currentColor" />
-                </Link>
+                <IconButton
+                    to={`/dashboard/posts/${post._id}`}
+                    aria-label="Edit post"
+                >
+                    <Icon name="edit" size={24} color="currentColor" />
+                </IconButton>
             </IconsContainer>
         </Container>
     )

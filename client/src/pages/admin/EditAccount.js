@@ -6,25 +6,58 @@ import axios from "axios"
 // Components
 import { AuthContext } from "../../context/auth"
 import * as Font from "../../components/styles/Font"
-import Page from "../../components/layouts/Page"
 import Form from "../../components/forms/Form"
 import Input from "../../components/forms/Input"
 import DangerZone from "../../components/forms/DangerZone"
+import Wrapper from "../../components/dashboard/Wrapper"
+import InputProfilePicture from "../../components/forms/InputProfilePicture"
+import service from "../../components/services/cloudinary"
+import ErrorContainer from "../../components/forms/ErrorContainer"
 
 function EditAccount({ edited, setEdited }) {
     const { user, updateUser, logoutUser } = useContext(AuthContext)
     const navigate = useNavigate()
 
     const [fullName, setFullName] = useState(user.fullName)
+    const [bio, setBio] = useState(user.bio)
+    const [imageUrl, setImageUrl] = useState(user.imageUrl)
+    const [picture, setPicture] = useState(user.imageUrl)
+    const [isLoading, setIsLoading] = useState(false)
     const [errorMessage, setErrorMessage] = useState(undefined)
 
     const handleFullName = e => setFullName(e.target.value)
+    const handleBio = e => setBio(e.target.value)
+    
+    const handleFileUpload = e => {
+        e.preventDefault()
+        const uploadData = new FormData()
+        setIsLoading(true)
+
+        uploadData.append("imageUrl", e.target.files[0])
+
+        service
+            .uploadImage(uploadData)
+            .then(res => {
+                setImageUrl(res.secure_url)
+                setIsLoading(false)
+            })
+            .catch(err => console.log(err))
+
+        if (e.target.files[0]) {
+            setPicture(e.target.files[0])
+            const reader = new FileReader()
+            reader.addEventListener("load", () => {
+                setPicture(reader.result)
+            })
+            reader.readAsDataURL(e.target.files[0])
+        }
+    }
 
     // Edit account
     const handleSubmit = e => {
         e.preventDefault()
 
-        const requestBody = { id: user._id, fullName }
+        const requestBody = { id: user._id, fullName, bio, imageUrl }
 
         axios
             .put("/users/edit", requestBody)
@@ -52,13 +85,14 @@ function EditAccount({ edited, setEdited }) {
     }
 
     return (
-        <Page title="Edit your account">
+        <Wrapper title="Edit your account">
             <Font.H1>Edit your account</Font.H1>
 
             <Form
                 btnprimary="Save changes"
                 btncancel="/dashboard"
                 onSubmit={handleSubmit}
+                isLoading={isLoading}
             >
                 <Input
                     label="Full name"
@@ -73,17 +107,35 @@ function EditAccount({ edited, setEdited }) {
                     id="email"
                     value={user.email}
                     disabled
+                    helper="You can not edit your email."
+                />
+
+                <Input
+                    label="Bio"
+                    inputtype="textarea"
+                    id="bio"
+                    counter={140}
+                    onChange={handleBio}
+                    value={bio}
+                />
+
+                <InputProfilePicture
+                    label="Profile picture"
+                    src={picture}
+                    alt={user.fullName}
+                    onChange={e => handleFileUpload(e)}
+                    id="imageUrl"
                 />
             </Form>
 
-            {errorMessage && <Font.P>{errorMessage}</Font.P>}
+            {errorMessage && <ErrorContainer>{errorMessage}</ErrorContainer>}
 
             <Font.P>
                 <Link to="/dashboard/edit-password">Edit your password.</Link>
             </Font.P>
 
-            <DangerZone onClick={handleDelete} />
-        </Page>
+            <DangerZone onClickPrimary={handleDelete} />
+        </Wrapper>
     )
 }
 

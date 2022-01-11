@@ -23,6 +23,7 @@ import EditAccount from "../pages/admin/EditAccount"
 import EditPassword from "../pages/admin/EditPassword"
 import NewPost from "../pages/admin/NewPost"
 import EditPost from "../pages/admin/EditPost"
+import Global from "../pages/admin/Global"
 
 // Posts
 import PostsList from "../pages/posts/PostsList"
@@ -112,7 +113,7 @@ function Switch() {
                 preload={scrollToTop()}
             />
             <Route
-                path="/dashboard/edit"
+                path="/dashboard/edit-account"
                 element={
                     <ProtectedRoutes redirectTo="/login">
                         <EditAccount edited={edited} setEdited={setEdited} />
@@ -154,6 +155,15 @@ function Switch() {
                     key={post._id}
                 />
             ))}
+            <Route
+                path="/dashboard/global"
+                element={
+                    <ProtectedRoutes redirectTo="/login">
+                        <Global edited={edited} setEdited={setEdited} />
+                    </ProtectedRoutes>
+                }
+                preload={scrollToTop()}
+            />
 
             {/* Posts */}
             <Route

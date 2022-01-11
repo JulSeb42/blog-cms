@@ -2,6 +2,9 @@
 import React from "react"
 import styled, { keyframes } from "styled-components"
 
+// Components
+import * as Variables from "../styles/Variables"
+
 // Styles
 const spin = keyframes`
     0% {
@@ -23,6 +26,7 @@ const Container = styled.span`
     animation: ${spin} 2s linear infinite;
     display: inline-block;
     border-top-color: ${props => props.color};
+    margin-right: ${Variables.Margins.XS};
 `
 
 function Loader(props) {

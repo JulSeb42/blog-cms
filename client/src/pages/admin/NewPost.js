@@ -12,6 +12,7 @@ import Input from "../../components/forms/Input"
 import Toggle from "../../components/forms/Toggle"
 import TextPost from "../../components/forms/TextPost"
 import service from "../../components/services/cloudinary"
+import Back from "../../components/ui/Back"
 
 // Utils
 import getToday from "../../components/utils/getToday"
@@ -36,6 +37,7 @@ function NewPost({ edited, setEdited }) {
     const [slug, setSlug] = useState("")
     const [category, setCategory] = useState("")
     const [tags, setTags] = useState("")
+    const [metaDescription, setMetaDescription] = useState("")
     const [imageUrl, setImageUrl] = useState("")
     const [body, setBody] = useState("")
     const [draft, setDraft] = useState(false)
@@ -53,6 +55,7 @@ function NewPost({ edited, setEdited }) {
 
     const handleCategory = e => setCategory(e.target.value)
     const handleTags = e => setTags(e.target.value)
+    const handleMetaDescription = e => setMetaDescription(e.target.value)
 
     const handleFileUpload = e => {
         e.preventDefault()
@@ -92,6 +95,7 @@ function NewPost({ edited, setEdited }) {
             author: user._id,
             body,
             imageUrl,
+            metaDescription,
         }
 
         axios
@@ -112,8 +116,13 @@ function NewPost({ edited, setEdited }) {
         <Wrapper title="New post">
             <Font.H1>New post</Font.H1>
 
+            <Back to="/dashboard" justify="start">
+                Back to dashboard
+            </Back>
+
             <Form
                 btnprimary="Publish"
+                btncancel="/dashboard"
                 isLoading={isLoading}
                 onSubmit={handleSubmit}
             >
@@ -144,6 +153,15 @@ function NewPost({ edited, setEdited }) {
                     helper="Separate all category with a comma."
                     onChange={handleTags}
                     value={tags}
+                />
+
+                <Input
+                    label="Meta description"
+                    inputtype="textarea"
+                    id="metaDescription"
+                    onChange={handleMetaDescription}
+                    value={metaDescription}
+                    counter={160}
                 />
 
                 <Input

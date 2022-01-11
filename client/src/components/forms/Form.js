@@ -1,26 +1,35 @@
 // Packages
 import React from "react"
+import styled from "styled-components"
 
 // Components
+import * as Variables from "../styles/Variables"
 import ButtonsContainer from "./ButtonsContainer"
 import Button from "../ui/Button"
+
+// Styles
+const Container = styled.form`
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: ${Variables.Margins.M};
+`
 
 function Form(props) {
     const conditionsButtons = props.btnprimary || props.btnreset
     return (
-        <form {...props}>
+        <Container {...props}>
             {props.children}
 
             {conditionsButtons && (
                 <ButtonsContainer>
                     {props.btnprimary && (
-                        <Button type="submit" isLoading={props.isLoading}>
+                        <Button type="submit" btnstyle="primary" isLoading={props.isLoading}>
                             {props.btnprimary}
                         </Button>
                     )}
 
                     {props.btncancel && (
-                        <Button to={props.btncancel}>Cancel</Button>
+                        <Button to={props.btncancel} btnstyle="secondary">Cancel</Button>
                     )}
 
                     {props.btnreset && (
@@ -28,7 +37,7 @@ function Form(props) {
                     )}
                 </ButtonsContainer>
             )}
-        </form>
+        </Container>
     )
 }
 

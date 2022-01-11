@@ -17,6 +17,7 @@ const Container = styled.main`
     display: grid;
     grid-template-columns: ${Variables.Container.Template};
     padding: ${Variables.Container.Padding};
+    gap: ${Variables.Margins.L};
 
     & > * {
         grid-column: ${Variables.Container.Column};

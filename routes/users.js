@@ -23,9 +23,13 @@ router.get("/user/:id", (req, res, next) => {
 
 // Edit account
 router.put("/edit", (req, res, next) => {
-    const { id, fullName } = req.body
+    const { id, fullName, bio, imageUrl } = req.body
 
-    User.findByIdAndUpdate(id, { fullName }, { new: true })
+    if (!fullName) {
+        res.status(400).json({ message: "Your name can not be empty!"})
+    }
+
+    User.findByIdAndUpdate(id, { fullName, bio, imageUrl }, { new: true })
         .then(updatedUser => {
             res.status(200).json({ user: updatedUser })
         })

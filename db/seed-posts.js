@@ -64,12 +64,12 @@ const tags = [
 ]
 
 const authors = [
-    "61dcbea3c3f8a683bfe59875",
-    "61dcbea3c3f8a683bfe59876",
-    "61dcbea3c3f8a683bfe59877",
-    "61dcbea3c3f8a683bfe59878",
-    "61dcbea3c3f8a683bfe59879",
-    "61dcbea3c3f8a683bfe5987a",
+    "61dd925feb0ede7582a79a92",
+    "61dd925feb0ede7582a79a93",
+    "61dd925feb0ede7582a79a94",
+    "61dd925feb0ede7582a79a95",
+    "61dd925feb0ede7582a79a96",
+    "61dd925feb0ede7582a79a97",
 ]
 
 const body =
@@ -104,6 +104,9 @@ const covers = [
     "https://images.unsplash.com/photo-1625685218928-84b31dc343fa?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=900&ixid=MnwxfDB8MXxyYW5kb218MHx8YmVybGlufHx8fHx8MTY0MTg1MjI4OA&ixlib=rb-1.2.1&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1600",
 ]
 
+const metaDescription =
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vel lacus viverra, aliquam eros sed, accumsan purus. Aliquam urna dolor, hendrerit."
+
 // title
 // date
 // time
@@ -129,6 +132,7 @@ for (let i = 0; i < titles.length; i++) {
         author: getRandom(authors),
         body: body,
         imageUrl: covers[i],
+        metaDescription,
     })
 }
 

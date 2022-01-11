@@ -15,7 +15,8 @@ import getFirstName from "../utils/getFirstName"
 const Container = styled.div`
     display: grid;
     grid-template-columns: 1fr;
-    gap: ${props => props.dashboard ? Variables.Margins.M : Variables.Margins.XXS};
+    gap: ${props =>
+        props.dashboard ? Variables.Margins.M : Variables.Margins.XXS};
     border: 1px solid ${Variables.Colors.LightGray};
     border-radius: ${Variables.Radiuses.M};
     padding: ${Variables.Margins.M};
@@ -48,7 +49,7 @@ function UserCard({ user, ...props }) {
                 )}
             </TitleContainer>
 
-            <Font.P>{user.bio}</Font.P>
+            {user.bio && <Font.P>{user.bio}</Font.P>}
 
             <Font.P>
                 <Link to={`/authors/${user.id}`}>

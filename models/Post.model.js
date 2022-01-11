@@ -8,6 +8,8 @@ const postSchema = new Schema(
         },
         date: String,
         time: String,
+        dateEdited: String,
+        timeEdited: String,
         category: String,
         tags: Array,
         slug: {
@@ -20,6 +22,7 @@ const postSchema = new Schema(
             ref: "User",
         },
         body: String,
+        metaDescription: String,
         // comments: [
         //     {
         //         type: Schema.Types.ObjectId,

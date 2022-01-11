@@ -5,9 +5,11 @@ import { useNavigate } from "react-router-dom"
 
 // Components
 import { AuthContext } from "../../context/auth"
-import Page from "../../components/layouts/Page"
+import Wrapper from "../../components/dashboard/Wrapper"
 import Form from "../../components/forms/Form"
 import Input from "../../components/forms/Input"
+import * as Font from "../../components/styles/Font"
+import ErrorContainer from "../../components/forms/ErrorContainer"
 
 function EditPassword({ edited, setEdited }) {
     const { user, updateUser } = useContext(AuthContext)
@@ -32,14 +34,14 @@ function EditPassword({ edited, setEdited }) {
                 navigate("/dashboard")
             })
             .catch(err => {
-                const errorDescription = err.response.data.errorMessage
+                const errorDescription = err.response.data.message
                 setErrorMessage(errorDescription)
             })
     }
 
     return (
-        <Page title="Edit your password">
-            <h1>Edit your password</h1>
+        <Wrapper title="Edit your password">
+            <Font.H1>Edit your password</Font.H1>
 
             <Form
                 btnprimary="Save changes"
@@ -55,8 +57,8 @@ function EditPassword({ edited, setEdited }) {
                 />
             </Form>
 
-            {errorMessage && <p>{errorMessage}</p>}
-        </Page>
+            {errorMessage && <ErrorContainer>{errorMessage}</ErrorContainer>}
+        </Wrapper>
     )
 }
 

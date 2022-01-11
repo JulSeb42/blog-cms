@@ -3,7 +3,7 @@ const SiteData = {
     Description: "",
     Favicon: "favicon.ico",
     Email: "",
-    Author: "",
+    Author: "Julien Sebag",
     Year: "",
 
     // Metadata

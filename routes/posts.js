@@ -49,6 +49,7 @@ router.put("/new-post", (req, res, next) => {
         body,
         imageUrl,
         draft,
+        metaDescription,
     } = req.body
 
     Post.findOne({ slug }).then(found => {
@@ -66,6 +67,7 @@ router.put("/new-post", (req, res, next) => {
                 body,
                 imageUrl,
                 draft,
+                metaDescription,
             })
                 .then(createdPost => {
                     User.findOneAndUpdate(
@@ -78,6 +80,40 @@ router.put("/new-post", (req, res, next) => {
                 .catch(err => next(err))
         }
     })
+})
+
+router.put("/edit-post/:id", (req, res, next) => {
+    const {
+        title,
+        category,
+        tags,
+        slug,
+        draft,
+        body,
+        imageUrl,
+        dateEdited,
+        timeEdited,
+        metaDescription,
+    } = req.body
+
+    Post.findByIdAndUpdate(
+        req.params.id,
+        {
+            title,
+            category,
+            tags,
+            slug,
+            draft,
+            body,
+            imageUrl,
+            dateEdited,
+            timeEdited,
+            metaDescription,
+        },
+        { new: true }
+    )
+        .then(updatedPost => res.status(200).json({ post: updatedPost }))
+        .catch(err => next(err))
 })
 
 module.exports = router

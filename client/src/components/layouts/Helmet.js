@@ -1,17 +1,32 @@
 // Packages
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { Helmet as HelmetMeta } from "react-helmet"
+import axios from "axios"
 
 // Data
 import SiteData from "../data/SiteData"
 
 function Helmet(props) {
+    // Get meta from backend
+    const [globalData, setGlobalData] = useState({})
+
+    useEffect(() => {
+        axios
+            .get("/global/global")
+            .then(res => {
+                setGlobalData(res.data[0])
+            })
+            .catch(err => console.log(err))
+    }, [])
+
     return (
         <HelmetMeta>
             <title>
-                {props.title} | {SiteData.Name}
+                {`${props.title} | ${
+                    globalData !== undefined ? globalData.name : SiteData.Name
+                }`}
             </title>
-            <link rel="icon" href={SiteData.Favicon} />
+            <link rel="icon" href={globalData.favicon} />
             <meta content="IE=edge" http-equiv="X-UA-Compatible" />
             <meta
                 content="width=device-width, initial-scale=1"
@@ -20,12 +35,14 @@ function Helmet(props) {
             <meta
                 name="description"
                 content={
-                    props.description ? props.description : SiteData.Description
+                    props.description
+                        ? props.description
+                        : globalData.metaDescription
                 }
             />
             <meta
                 name="keywords"
-                content={`${props.keywords}, ${SiteData.Keywords}`}
+                content={`${props.keywords}, ${globalData.keywords}`}
             />
             <meta name="author" content={SiteData.Author} />
             <meta property="og:title" content={props.title} />
