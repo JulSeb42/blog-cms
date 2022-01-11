@@ -26,7 +26,7 @@ router.put("/edit", (req, res, next) => {
     const { id, fullName, bio, imageUrl } = req.body
 
     if (!fullName) {
-        res.status(400).json({ message: "Your name can not be empty!"})
+        res.status(400).json({ message: "Your name can not be empty!" })
     }
 
     User.findByIdAndUpdate(id, { fullName, bio, imageUrl }, { new: true })
@@ -59,6 +59,19 @@ router.put("/edit-password", (req, res, next) => {
                 })
                 .catch(err => next(err))
         })
+})
+
+// Approve user
+router.put("/approve/:id", (req, res, next) => {
+    User.findByIdAndUpdate(
+        req.params.id,
+        { approved: true, verified: true },
+        { new: true }
+    )
+        .then(() => {
+            res.status(200).json({ message: "User approved" })
+        })
+        .catch(err => next(err))
 })
 
 // Delete account

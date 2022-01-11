@@ -24,6 +24,7 @@ import EditPassword from "../pages/admin/EditPassword"
 import NewPost from "../pages/admin/NewPost"
 import EditPost from "../pages/admin/EditPost"
 import Global from "../pages/admin/Global"
+import Users from "../pages/admin/Users"
 
 // Posts
 import PostsList from "../pages/posts/PostsList"
@@ -160,6 +161,15 @@ function Switch() {
                 element={
                     <ProtectedRoutes redirectTo="/login">
                         <Global edited={edited} setEdited={setEdited} />
+                    </ProtectedRoutes>
+                }
+                preload={scrollToTop()}
+            />
+            <Route
+                path="/dashboard/users"
+                element={
+                    <ProtectedRoutes redirectTo="/login">
+                        <Users />
                     </ProtectedRoutes>
                 }
                 preload={scrollToTop()}
