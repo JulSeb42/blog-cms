@@ -41,6 +41,7 @@ function NewPost({ edited, setEdited }) {
     const [imageUrl, setImageUrl] = useState("")
     const [body, setBody] = useState("")
     const [draft, setDraft] = useState(false)
+    const [featured, setFeatured] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
     const [errorMessage, setErrorMessage] = useState(undefined)
 
@@ -81,6 +82,14 @@ function NewPost({ edited, setEdited }) {
         }
     }
 
+    const handleFeatured = e => {
+        if (e.target.checked) {
+            setFeatured(true)
+        } else {
+            setFeatured(false)
+        }
+    }
+
     const handleSubmit = e => {
         e.preventDefault()
 
@@ -96,6 +105,7 @@ function NewPost({ edited, setEdited }) {
             body,
             imageUrl,
             metaDescription,
+            featured,
         }
 
         axios
@@ -172,6 +182,13 @@ function NewPost({ edited, setEdited }) {
                 />
 
                 <TextPost label="Body" value={body} onChange={setBody} />
+
+                <Toggle
+                    label="Feature this article"
+                    id="featured"
+                    onChange={handleFeatured}
+                    defaultChecked={featured}
+                />
 
                 <Toggle
                     label="Add to drafts"

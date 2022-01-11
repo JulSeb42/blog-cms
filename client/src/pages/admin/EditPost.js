@@ -42,6 +42,7 @@ function EditPost({ post, edited, setEdited, ...props }) {
     const [draft, setDraft] = useState(
         post.author._id !== user._id && user.role === "writer" ? true : post.draft
     )
+    const [featured, setFeatured] = useState(post.featured)
     const [imageUrl, setImageUrl] = useState(post.imageUrl)
     const [picture, setPicture] = useState(post.imageUrl)
     const [isLoading, setIsLoading] = useState(false)
@@ -87,6 +88,14 @@ function EditPost({ post, edited, setEdited, ...props }) {
         }
     }
 
+    const handleFeatured = e => {
+        if (e.target.checked) {
+            setFeatured(true)
+        } else {
+            setFeatured(false)
+        }
+    }
+
     const handleSubmit = e => {
         e.preventDefault()
 
@@ -100,6 +109,7 @@ function EditPost({ post, edited, setEdited, ...props }) {
             dateEdited: getToday(),
             timeEdited: getTimeNow(),
             metaDescription,
+            featured,
         }
 
         axios.put(`/posts/edit-post/${post._id}`, requestBody).then(() => {
@@ -170,6 +180,13 @@ function EditPost({ post, edited, setEdited, ...props }) {
                 />
 
                 <TextPost label="Body" value={body} onChange={setBody} />
+
+                <Toggle
+                    label="Feature this article"
+                    id="featured"
+                    onChange={handleFeatured}
+                    defaultChecked={featured}
+                />
 
                 <Toggle
                     label="Add to drafts"

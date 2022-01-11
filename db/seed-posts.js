@@ -107,6 +107,8 @@ const covers = [
 const metaDescription =
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vel lacus viverra, aliquam eros sed, accumsan purus. Aliquam urna dolor, hendrerit."
 
+const tF = [true, false]
+
 // title
 // date
 // time
@@ -133,6 +135,7 @@ for (let i = 0; i < titles.length; i++) {
         body: body,
         imageUrl: covers[i],
         metaDescription,
+        featured: getRandom(tF)
     })
 }
 

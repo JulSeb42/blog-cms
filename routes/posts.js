@@ -50,6 +50,7 @@ router.put("/new-post", (req, res, next) => {
         imageUrl,
         draft,
         metaDescription,
+        featured,
     } = req.body
 
     Post.findOne({ slug }).then(found => {
@@ -68,6 +69,7 @@ router.put("/new-post", (req, res, next) => {
                 imageUrl,
                 draft,
                 metaDescription,
+                featured,
             })
                 .then(createdPost => {
                     User.findOneAndUpdate(
@@ -94,6 +96,7 @@ router.put("/edit-post/:id", (req, res, next) => {
         dateEdited,
         timeEdited,
         metaDescription,
+        featured,
     } = req.body
 
     Post.findByIdAndUpdate(
@@ -109,6 +112,7 @@ router.put("/edit-post/:id", (req, res, next) => {
             dateEdited,
             timeEdited,
             metaDescription,
+            featured,
         },
         { new: true }
     )
