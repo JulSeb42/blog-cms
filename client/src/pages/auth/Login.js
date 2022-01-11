@@ -6,7 +6,7 @@ import { useNavigate, Link, Navigate } from "react-router-dom"
 // Components
 import { AuthContext } from "../../context/auth"
 import * as Font from "../../components/styles/Font"
-import Page from "../../components/layouts/Page"
+import ContainerForm from "../../components/layouts/ContainerForm"
 import Form from "../../components/forms/Form"
 import Input from "../../components/forms/Input"
 
@@ -41,9 +41,7 @@ function Login() {
     return isLoggedIn ? (
         <Navigate to="/dashboard" />
     ) : (
-        <Page title="Login">
-            <Font.H1>Login</Font.H1>
-
+        <ContainerForm title="Login">
             <Form onSubmit={handleSubmit} btnprimary="Log in">
                 <Input
                     label="Email"
@@ -63,15 +61,18 @@ function Login() {
             </Form>
 
             <Font.P>
-                <Link to="/login/forgot-password">I forgot my password.</Link>
+                <Link to="/dashboard/login/forgot-password">
+                    I forgot my password.
+                </Link>
             </Font.P>
 
             <Font.P>
-                You don't have an account? <Link to="/signup">Signup</Link>
+                You don't have an account?{" "}
+                <Link to="/dashboard/signup">Signup</Link>
             </Font.P>
 
             {errorMessage && <Font.P>{errorMessage}</Font.P>}
-        </Page>
+        </ContainerForm>
     )
 }
 

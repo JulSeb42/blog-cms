@@ -21,10 +21,11 @@ router.put("/create", (req, res, next) => {
 })
 
 router.put("/edit", (req, res, next) => {
-    const { name, metaDescription, favicon, email, cover, keywords } = req.body
+    const { name, baseline, metaDescription, favicon, email, cover, keywords } = req.body
 
     Global.findByIdAndUpdate("61ddbd1b06de66e386e32a88", {
         name,
+        baseline,
         metaDescription,
         favicon,
         email,

@@ -5,6 +5,7 @@ import axios from "axios"
 
 // Data
 import SiteData from "../data/SiteData"
+import GlobalData from "../data/GlobalData"
 
 function Helmet(props) {
     // Get meta from backend
@@ -23,7 +24,7 @@ function Helmet(props) {
         <HelmetMeta>
             <title>
                 {`${props.title} | ${
-                    globalData !== undefined ? globalData.name : SiteData.Name
+                    GlobalData() !== undefined ? GlobalData().name : "Site name"
                 }`}
             </title>
             <link rel="icon" href={globalData.favicon} />
@@ -37,12 +38,12 @@ function Helmet(props) {
                 content={
                     props.description
                         ? props.description
-                        : globalData.metaDescription
+                        : GlobalData().metaDescription
                 }
             />
             <meta
                 name="keywords"
-                content={`${props.keywords}, ${globalData.keywords}`}
+                content={`${props.keywords}, ${GlobalData().keywords}`}
             />
             <meta name="author" content={SiteData.Author} />
             <meta property="og:title" content={props.title} />

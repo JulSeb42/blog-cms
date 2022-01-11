@@ -6,7 +6,7 @@ import { useNavigate, Link } from "react-router-dom"
 // Components
 import { AuthContext } from "../../context/auth"
 import * as Font from "../../components/styles/Font"
-import Page from "../../components/layouts/Page"
+import ContainerForm from "../../components/layouts/ContainerForm"
 import Form from "../../components/forms/Form"
 import Input from "../../components/forms/Input"
 
@@ -43,7 +43,7 @@ function Signup() {
             .put("/auth/signup", requestBody)
             .then(res => {
                 loginUser(res.data)
-                navigate("/thank-you")
+                navigate("/dashboard/thank-you")
             })
             .catch(err => {
                 const errorDescription = err.response.data.message
@@ -52,9 +52,7 @@ function Signup() {
     }
 
     return (
-        <Page title="Signup">
-            <Font.H1>Signup</Font.H1>
-
+        <ContainerForm title="Signup">
             <Form onSubmit={handleSubmit} btnprimary="Create your account">
                 <Input
                     label="Full name"
@@ -82,11 +80,12 @@ function Signup() {
             </Form>
 
             <Font.P>
-                You already have an account? <Link to="/login">Login</Link>
+                You already have an account?{" "}
+                <Link to="/dashboard/login">Login</Link>
             </Font.P>
 
             {errorMessage && <Font.P>{errorMessage}</Font.P>}
-        </Page>
+        </ContainerForm>
     )
 }
 

@@ -2,15 +2,14 @@
 import React from "react"
 
 // Components
-import Page from "../../components/layouts/Page"
+import ContainerForm from "../../components/layouts/ContainerForm"
+import * as Font from "../../components/styles/Font"
 
 function ForgotSent() {
     return (
-        <Page title="Email sent successfully">
-            <h1>Email sent successfully</h1>
-
-            <p>We just sent you an email with a link to reset your password.</p>
-        </Page>
+        <ContainerForm title="Email sent successfully">
+            <Font.P>We just sent you an email with a link to reset your password.</Font.P>
+        </ContainerForm>
     )
 }
 

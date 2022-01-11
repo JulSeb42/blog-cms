@@ -17,9 +17,8 @@ function Global() {
     const navigate = useNavigate()
 
     // Get meta from backend
-    const [globalData, setGlobalData] = useState("")
-
     const [name, setName] = useState("")
+    const [baseline, setBaseline] = useState("")
     const [metaDescription, setMetaDescription] = useState("")
     const [email, setEmail] = useState("")
     const [favicon, setFavicon] = useState("")
@@ -32,8 +31,8 @@ function Global() {
         axios
             .get("/global/global/61ddbd1b06de66e386e32a88")
             .then(res => {
-                setGlobalData(res.data)
                 setName(res.data.name)
+                setBaseline(res.data.baseline)
                 setMetaDescription(res.data.metaDescription)
                 setEmail(res.data.email)
                 setKeywords(res.data.keywords)
@@ -42,6 +41,7 @@ function Global() {
     }, [])
 
     const handleName = e => setName(e.target.value)
+    const handleBaseline = e => setBaseline(e.target.value)
     const handleMetaDescription = e => setMetaDescription(e.target.value)
     const handleEmail = e => setEmail(e.target.value)
 
@@ -84,6 +84,7 @@ function Global() {
 
         const requestBody = {
             name,
+            baseline,
             metaDescription,
             email,
             favicon,
@@ -118,6 +119,13 @@ function Global() {
                     id="name"
                     onChange={handleName}
                     value={name}
+                />
+
+                <Input
+                    label="Site baseline"
+                    id="baseline"
+                    onChange={handleBaseline}
+                    value={baseline}
                 />
 
                 <Input

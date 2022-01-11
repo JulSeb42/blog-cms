@@ -6,6 +6,7 @@ const globalSchema = new Schema(
             type: String,
             required: true,
         },
+        baseline: String,
         metaDescription: String,
         favicon: String,
         email: String,

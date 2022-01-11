@@ -63,7 +63,7 @@ router.put("/signup", isLoggedOut, (req, res, next) => {
                     from: process.env.EMAIL,
                     to: email,
                     subject: "Verify your account on our app",
-                    html: `Hello,<br /><br />Thank you for creating your account on blog app! <a href="${process.env.ORIGIN}/verify/${verifyToken}/${user._id}">Click here to verify your account</a>.`,
+                    html: `Hello,<br /><br />Thank you for creating your account on blog app! <a href="${process.env.ORIGIN}/dashboard/verify/${verifyToken}/${user._id}">Click here to verify your account</a>.`,
                 }
 
                 transporter.sendMail(mailDetails, (err, data) => {
@@ -172,7 +172,7 @@ router.put("/forgot", (req, res, next) => {
                         from: process.env.EMAIL,
                         to: email,
                         subject: "Reset your password on Blog app",
-                        html: `Hello,<br /><br />To reset your password, <a href="${process.env.ORIGIN}/reset-password/${resetToken}/${foundUser._id}">click here</a>.`,
+                        html: `Hello,<br /><br />To reset your password, <a href="${process.env.ORIGIN}/dashboard/reset-password/${resetToken}/${foundUser._id}">click here</a>.`,
                     }
 
                     transporter.sendMail(mailDetails, function (err, data) {
@@ -192,7 +192,7 @@ router.put("/forgot", (req, res, next) => {
 
 // Reset password
 router.put("/reset-password/:token/:id", (req, res, next) => {
-    const { password } = req.body
+    const { password, id } = req.body
 
     const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/
 
@@ -207,7 +207,7 @@ router.put("/reset-password/:token/:id", (req, res, next) => {
         .genSalt(saltRounds)
         .then(salt => bcrypt.hash(password, salt))
         .then(hashedPassword => {
-            return User.findByIdAndUpdate(req.params.id, {
+            return User.findByIdAndUpdate(id, {
                 password: hashedPassword,
             })
                 .then(updatedUser => {

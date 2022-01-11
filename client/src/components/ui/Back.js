@@ -21,7 +21,7 @@ const BackButton = styled(Button)`
 function Back(props) {
     return (
         <BackButton btnstyle="secondary" to={props.to} {...props}>
-            <Icon name="chevron-left" size={12} color="currentColor" />
+            <Icon name="chevron-left" size={16} color="currentColor" />
 
             {props.children}
         </BackButton>

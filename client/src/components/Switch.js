@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react"
 import { Routes, Route } from "react-router-dom"
 import axios from "axios"
+import { Navigate } from "react-router-dom"
 
 // Pages
 import Home from "../pages/Home"
@@ -58,18 +59,27 @@ function Switch() {
             {/* Auth */}
             <Route
                 path="/signup"
+                element={<Navigate to="/dashboard/signup" />}
+            />
+            <Route
+                path="/dashboard/signup"
                 element={<Signup />}
                 preload={scrollToTop()}
             />
-            <Route path="/login" element={<Login />} preload={scrollToTop()} />
+            <Route path="/login" element={<Navigate to="/dashboard/login" />} />
             <Route
-                path="/thank-you"
+                path="/dashboard/login"
+                element={<Login />}
+                preload={scrollToTop()}
+            />
+            <Route
+                path="/dashboard/thank-you"
                 element={<ThankYou />}
                 preload={scrollToTop()}
             />
             {allUsers.map(user => (
                 <Route
-                    path={`/verify/${user.verifyToken}/${user._id}`}
+                    path={`/dashboard/verify/${user.verifyToken}/${user._id}`}
                     element={
                         <ProtectedRoutes redirectTo="/login">
                             <Verify edited={edited} setEdited={setEdited} />
@@ -80,25 +90,25 @@ function Switch() {
                 />
             ))}
             <Route
-                path="/login/forgot-password"
+                path="/dashboard/login/forgot-password"
                 element={<ForgotPassword />}
                 preload={scrollToTop()}
             />
             <Route
-                path="/login/forgot-password/email-sent"
+                path="/dashboard/login/forgot-password/email-sent"
                 element={<ForgotSent />}
                 preload={scrollToTop()}
             />
             {allUsers.map(user => (
                 <Route
-                    path={`/reset-password/${user.resetToken}/${user._id}`}
+                    path={`/dashboard/reset-password/${user.resetToken}/${user._id}`}
                     element={<ResetPassword />}
                     key={`${user.resetToken}-${user._id}`}
                     preload={scrollToTop()}
                 />
             ))}
             <Route
-                path="/goodbye"
+                path="/dashboard/goodbye"
                 element={<Goodbye />}
                 preload={scrollToTop()}
             />

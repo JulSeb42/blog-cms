@@ -6,10 +6,11 @@ import axios from "axios"
 // Components
 import { AuthContext } from "../../context/auth"
 import * as Font from "../../components/styles/Font"
-import Page from "../../components/layouts/Page"
+import ContainerForm from "../../components/layouts/ContainerForm"
 import Form from "../../components/forms/Form"
 import Input from "../../components/forms/Input"
-
+import ErrorContainer from "../../components/forms/ErrorContainer"
+ 
 // Utils
 import getRandomString from "../../components/utils/getRandomString"
 
@@ -33,7 +34,7 @@ function ForgotPassword() {
         axios
             .put("/auth/forgot", requestBody)
             .then(res => {
-                navigate("/login/forgot-password/email-sent")
+                navigate("/dashboard/login/forgot-password/email-sent")
             })
             .catch(err => {
                 const errorDescription = err.response.data.message
@@ -44,13 +45,11 @@ function ForgotPassword() {
     return isLoggedIn ? (
         <Navigate to="/dashboard" />
     ) : (
-        <Page title="I forgot my password">
-            <h1>I forgot my password</h1>
-
-            <p>
+        <ContainerForm title="I forgot my password">
+            <Font.P>
                 Please enter your email address, we will send you a link to
                 reset your password.
-            </p>
+            </Font.P>
 
             <Form btnprimary="Send" onSubmit={handleSubmit}>
                 <Input
@@ -62,8 +61,8 @@ function ForgotPassword() {
                 />
             </Form>
 
-            {errorMessage && <Font.P>{errorMessage}</Font.P>}
-        </Page>
+            {errorMessage && <ErrorContainer>{errorMessage}</ErrorContainer>}
+        </ContainerForm>
     )
 }
 

@@ -4,7 +4,7 @@ import axios from "axios"
 import { useNavigate } from "react-router-dom"
 
 // Components
-import Page from "../../components/layouts/Page"
+import ContainerForm from "../../components/layouts/ContainerForm"
 import * as Font from "../../components/styles/Font"
 import Form from "../../components/forms/Form"
 import Input from "../../components/forms/Input"
@@ -16,8 +16,8 @@ function ResetPassword() {
     const navigate = useNavigate()
 
     const data = window.location.href.split("/")
-    const token = data[4]
-    const id = data[5]
+    const token = data[5]
+    const id = data[6]
 
     const handleSubmit = e => {
         e.preventDefault()
@@ -33,9 +33,7 @@ function ResetPassword() {
     }
 
     return (
-        <Page title="Reset your password">
-            <Font.H1>Reset your password</Font.H1>
-
+        <ContainerForm title="Reset your password">
             <Form btnprimary="Send" onSubmit={handleSubmit}>
                 <Input
                     label="New password"
@@ -45,7 +43,7 @@ function ResetPassword() {
                     value={password}
                 />
             </Form>
-        </Page>
+        </ContainerForm>
     )
 }
 

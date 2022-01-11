@@ -1,7 +1,7 @@
 // Packages
 import React, { useContext } from "react"
 import styled, { css } from "styled-components"
-import { NavLink } from "react-router-dom"
+import { NavLink, Link as NormalLink, useLocation } from "react-router-dom"
 
 // Import components
 import * as Variables from "../styles/Variables"
@@ -10,7 +10,8 @@ import { AuthContext } from "../../context/auth"
 import Icon from "../ui/Icon"
 
 // Data
-import SiteData from "../data/SiteData"
+// import SiteData from "../data/SiteData"
+import GlobalData from "../data/GlobalData"
 
 // Styles
 const Container = styled.nav`
@@ -32,7 +33,7 @@ const Container = styled.nav`
         font-weight: ${Variables.FontWeights.Bold};
 
         &:hover {
-            color: ${Variables.Colors.Secondary};
+            color: ${Variables.Colors.Secondary70};
         }
     }
 `
@@ -67,6 +68,10 @@ const Link = styled(NavLink)`
 
     & > span {
         margin-right: ${Variables.Margins.XXS};
+    }
+
+    &.active {
+        color: ${Variables.Colors.Secondary};
     }
 `
 
@@ -106,38 +111,60 @@ const LinksBottom = [
 ]
 
 // Components
-const ButtonNav = ({ link }) => {
+const ButtonNav = props => {
     return (
-        <Link to={link.url}>
-            <Icon name={link.icon} size={16} color="currentColor" />
-            {link.title}
+        <Link to={props.url} as={props.as} {...props}>
+            <Icon name={props.icon} size={16} color="currentColor" />
+            {props.title}
         </Link>
     )
 }
 
 function Nav() {
     const { user, logoutUser } = useContext(AuthContext)
+    const location = useLocation().pathname
 
     return (
         <Container>
             <Title>
-                <NavLink to="/">{SiteData.Name}</NavLink>
+                <NavLink to="/dashboard">{GlobalData().name}</NavLink>
             </Title>
 
             <List full>
                 {Links.map((link, i) => (
-                    <ButtonNav link={link} key={i} />
+                    <ButtonNav
+                        as={link.url === "/dashboard" ? NormalLink : Link}
+                        className={
+                            location === "/dashboard" &&
+                            link.url === "/dashboard" &&
+                            "active"
+                        }
+                        url={link.url}
+                        icon={link.icon}
+                        title={link.title}
+                        key={i}
+                    />
                 ))}
 
                 {user.role === "admin" &&
                     LinksAdmin.map((link, i) => (
-                        <ButtonNav link={link} key={i} />
+                        <ButtonNav
+                            url={link.url}
+                            icon={link.icon}
+                            title={link.title}
+                            key={i}
+                        />
                     ))}
             </List>
 
             <List>
                 {LinksBottom.map((link, i) => (
-                    <ButtonNav link={link} key={i} />
+                    <ButtonNav
+                        url={link.url}
+                        icon={link.icon}
+                        title={link.title}
+                        key={i}
+                    />
                 ))}
 
                 <Link as="button" onClick={logoutUser}>
