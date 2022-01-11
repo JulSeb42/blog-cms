@@ -101,11 +101,15 @@ function Dashboard() {
                 >
                     <option value="all">All</option>
 
-                    {allAuthors.map(author => (
-                        <option value={author.id} key={author._id}>
-                            {author.fullName}
-                        </option>
-                    ))}
+                    {allAuthors
+                        .sort((a, b) => {
+                            return a.fullName > b.fullName ? 1 : -1
+                        })
+                        .map(author => (
+                            <option value={author.id} key={author._id}>
+                                {author.fullName}
+                            </option>
+                        ))}
                 </Select>
 
                 <Select

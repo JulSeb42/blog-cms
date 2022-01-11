@@ -64,12 +64,12 @@ const tags = [
 ]
 
 const authors = [
-    "61dd925feb0ede7582a79a92",
-    "61dd925feb0ede7582a79a93",
-    "61dd925feb0ede7582a79a94",
-    "61dd925feb0ede7582a79a95",
-    "61dd925feb0ede7582a79a96",
-    "61dd925feb0ede7582a79a97",
+    "61ddcbee109f9908bd2781fc",
+    "61ddcbee109f9908bd2781fd",
+    "61ddcbee109f9908bd2781fe",
+    "61ddcbee109f9908bd2781ff",
+    "61ddcbee109f9908bd278200",
+    "61ddcbee109f9908bd278201",
 ]
 
 const body =

@@ -6,17 +6,12 @@ mongoose.connect(process.env.MONGODB_URI)
 const User = require("../models/User.model")
 
 // Julien
-const idJulien = "61dcbea3c3f8a683bfe59875"
+const idJulien = "61ddcbee109f9908bd2781fc"
 const postsJulien = [
-    "61dcbeecb9a81326e6578630",
-    "61dcbeecb9a81326e6578627",
-    "61dcbeecb9a81326e6578633",
-    "61dcbeecb9a81326e6578636",
-    "61dcbeecb9a81326e6578629",
-    "61dcbeecb9a81326e657863b",
-    "61dcbeecb9a81326e657862f",
+    "61ddcc3b40e2c0fadd4c09f2",
+    "61ddcc3b40e2c0fadd4c09df",
+    "61ddcc3b40e2c0fadd4c09ef",
 ]
-// 7
 
 User.findOneAndUpdate(
     { _id: idJulien },
@@ -27,14 +22,17 @@ User.findOneAndUpdate(
 )
     .then(posts => {
         console.log(`Success, ${posts.length} were pushed to Julien`)
-        // mongoose.connection.close()
     })
     .catch(err => console.log(err))
 
 // Dirk
-const idDirk = "61dcbea3c3f8a683bfe59876"
-const postsDirk = ["61dcbeecb9a81326e6578632", "61dcbeecb9a81326e6578639"]
-// 2
+const idDirk = "61ddcbee109f9908bd2781fd"
+const postsDirk = [
+    "61ddcc3b40e2c0fadd4c09e3",
+    "61ddcc3b40e2c0fadd4c09f1",
+    "61ddcc3b40e2c0fadd4c09ea",
+    "61ddcc3b40e2c0fadd4c09f8",
+]
 
 User.findOneAndUpdate(
     { _id: idDirk },
@@ -45,19 +43,18 @@ User.findOneAndUpdate(
 )
     .then(posts => {
         console.log(`Success, ${posts.length} were pushed to Dirk`)
-        // mongoose.connection.close()
     })
     .catch(err => console.log(err))
 
 // Jan
-const idJan = "61dcbea3c3f8a683bfe59877"
+const idJan = "61ddcbee109f9908bd2781fe"
 const postsJan = [
-    "61dcbeecb9a81326e6578635",
-    "61dcbeecb9a81326e657862c",
-    "61dcbeecb9a81326e657863c",
-    "61dcbeecb9a81326e657862a",
+    "61ddcc3b40e2c0fadd4c09f6",
+    "61ddcc3b40e2c0fadd4c09e6",
+    "61ddcc3b40e2c0fadd4c09ec",
+    "61ddcc3b40e2c0fadd4c09e7",
+    "61ddcc3b40e2c0fadd4c09e2",
 ]
-// 4
 
 User.findOneAndUpdate(
     { _id: idJan },
@@ -68,18 +65,18 @@ User.findOneAndUpdate(
 )
     .then(posts => {
         console.log(`Success, ${posts.length} were pushed to Jan`)
-        // mongoose.connection.close()
     })
     .catch(err => console.log(err))
 
 // Katja
-const idKatja = "61dcbea3c3f8a683bfe59878"
+const idKatja = "61ddcbee109f9908bd2781ff"
 const postsKatja = [
-    "61dcbeecb9a81326e6578631",
-    "61dcbeecb9a81326e6578634",
-    "61dcbeecb9a81326e6578624",
+    "61ddcc3b40e2c0fadd4c09e9",
+    "61ddcc3b40e2c0fadd4c09f3",
+    "61ddcc3b40e2c0fadd4c09e4",
+    "61ddcc3b40e2c0fadd4c09e1",
+    "61ddcc3b40e2c0fadd4c09e5",
 ]
-// 3
 
 User.findOneAndUpdate(
     { _id: idKatja },
@@ -90,18 +87,17 @@ User.findOneAndUpdate(
 )
     .then(posts => {
         console.log(`Success, ${posts.length} were pushed to Katja`)
-        // mongoose.connection.close()
     })
     .catch(err => console.log(err))
 
 // Daniela
-const idDaniela = "61dcbea3c3f8a683bfe59879"
+const idDaniela = "61ddcbee109f9908bd278200"
 const postsDaniela = [
-    "61dcbeecb9a81326e6578625",
-    "61dcbeecb9a81326e6578638",
-    "61dcbeecb9a81326e6578626",
+    "61ddcc3b40e2c0fadd4c09e8",
+    "61ddcc3b40e2c0fadd4c09f4",
+    "61ddcc3b40e2c0fadd4c09eb",
+    "61ddcc3b40e2c0fadd4c09f0",
 ]
-// 3
 
 User.findOneAndUpdate(
     { _id: idDaniela },
@@ -112,22 +108,18 @@ User.findOneAndUpdate(
 )
     .then(posts => {
         console.log(`Success, ${posts.length} were pushed to Daniela`)
-        // mongoose.connection.close()
     })
     .catch(err => console.log(err))
 
 // Jennifer
-const idJennifer = "61dcbea3c3f8a683bfe5987a"
+const idJennifer = "61ddcbee109f9908bd278201"
 const postsJennifer = [
-    "61dcbeecb9a81326e6578628",
-    "61dcbeecb9a81326e657862b",
-    "61dcbeecb9a81326e657863a",
-    "61dcbeecb9a81326e657862d",
-    "61dcbeecb9a81326e6578623",
-    "61dcbeecb9a81326e6578637",
-    "61dcbeecb9a81326e657862e",
+    "61ddcc3b40e2c0fadd4c09ed",
+    "61ddcc3b40e2c0fadd4c09ee",
+    "61ddcc3b40e2c0fadd4c09f7",
+    "61ddcc3b40e2c0fadd4c09f5",
+    "61ddcc3b40e2c0fadd4c09e0",
 ]
-// 7
 
 User.findOneAndUpdate(
     { _id: idJennifer },
