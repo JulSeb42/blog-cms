@@ -74,6 +74,16 @@ router.put("/approve/:id", (req, res, next) => {
         .catch(err => next(err))
 })
 
+// Feature user
+router.put("/feature/:id", (req, res, next) => {
+    const { featured } = req.body
+    User.findByIdAndUpdate(req.params.id, { featured }, { new: true })
+        .then(() => {
+            res.status(200).json({ message: "User featured" })
+        })
+        .catch(err => next(err))
+})
+
 // Delete account
 router.delete("/delete-user/:id", (req, res, next) => {
     const id = req.params.id

@@ -2,9 +2,8 @@
 import React from "react"
 
 // Components
-import Page from "../../components/layouts/Page"
-import * as Font from "../../components/styles/Font"
 import ContainerForm from "../../components/layouts/ContainerForm"
+import * as Font from "../../components/styles/Font"
 
 function Goodbye() {
     return (

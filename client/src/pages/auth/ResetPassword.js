@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom"
 
 // Components
 import ContainerForm from "../../components/layouts/ContainerForm"
-import * as Font from "../../components/styles/Font"
 import Form from "../../components/forms/Form"
 import Input from "../../components/forms/Input"
 

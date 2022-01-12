@@ -35,6 +35,8 @@ function Global() {
                 setBaseline(res.data.baseline)
                 setMetaDescription(res.data.metaDescription)
                 setEmail(res.data.email)
+                setFavicon(res.data.favicon)
+                setCover(res.data.cover)
                 setKeywords(res.data.keywords)
             })
             .catch(err => console.log(err))

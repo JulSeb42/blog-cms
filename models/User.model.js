@@ -25,6 +25,7 @@ const userSchema = new Schema(
         },
 
         approved: Boolean,
+        featured: Boolean,
 
         posts: [
             {

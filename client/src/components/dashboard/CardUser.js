@@ -9,6 +9,7 @@ import * as Font from "../styles/Font"
 import ButtonsContainer from "../forms/ButtonsContainer"
 import Button from "../ui/Button"
 import Icon from "../ui/Icon"
+import Toggle from "../forms/Toggle"
 
 // Styles
 const Container = styled.div`
@@ -93,12 +94,41 @@ function CardUser({ user, ...props }) {
             .catch(err => console.log(err))
     }
 
+    // Feature user
+    const [featured, setFeatured] = useState(user.featured)
+
+    const handleFeatured = e => {
+        if (e.target.checked) {
+            setFeatured(true)
+            axios
+                .put(`/users/feature/${user._id}`, { featured: true })
+                .then(() => {
+                    alert(`Success, ${user.fullName} is now featured`)
+                })
+        } else {
+            setFeatured(false)
+            axios
+                .put(`/users/feature/${user._id}`, { featured: false })
+                .then(() => {
+                    alert(`Success, ${user.fullName} is not featured`)
+                })
+        }
+    }
+
     return (
         <Container className={open}>
             <Content>
                 <Font.Strong>{user.fullName}</Font.Strong>
 
                 <IconsContainer>
+                    <Toggle
+                        label="Featured"
+                        id={`featured-${user._id}`}
+                        onChange={handleFeatured}
+                        defaultChecked={featured}
+                        value={featured}
+                    />
+
                     {user.approved === false && (
                         <IconButton>
                             <Icon

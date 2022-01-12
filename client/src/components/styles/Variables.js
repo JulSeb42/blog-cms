@@ -1,11 +1,5 @@
 // Colors
 export const Colors = {
-    // Primary: "#00ABE1",
-    // Primary70: "#61D9FF",
-    // Primary10: "#E5F9FF",
-    // Secondary: "#161F6D",
-    // Secondary70: "#2F40D5",
-    // Secondary10: "#EAECFB",
     Primary: "#161F6D",
     Primary70: "#2F40D5",
     Primary10: "#EAECFB",
@@ -26,6 +20,10 @@ export const Colors = {
     Gray: "#969194",
     LightGray: "#E6E5E5",
     White: "#FFFFFF",
+    Overlay:
+        "linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(255, 255, 255, 0) 100%)",
+    OverlayWhite:
+        "linear-gradient(0deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 100%)",
 }
 
 // Margins

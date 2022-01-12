@@ -4,7 +4,7 @@ import styled from "styled-components"
 
 // Components
 import * as Variables from "../styles/Variables"
-import ImageCover from "../post/ImageCover"
+import ImageCover from "../layouts/ImageCover"
 import InputContainer from "./InputContainer"
 import Icon from "../ui/Icon"
 
