@@ -16,8 +16,8 @@ function AuthorDetail({ author }) {
             url: "/authors",
         },
         {
-            title: author.fullName
-        }
+            title: author.fullName,
+        },
     ]
 
     return (

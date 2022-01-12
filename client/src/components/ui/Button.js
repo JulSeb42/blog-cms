@@ -63,10 +63,12 @@ const Container = styled.button`
             justify-self: ${props => props.justify};
         `}
     
-    ${props => props.isLoading && css`
-        display: flex;
-        align-items: center;
-    `}
+    ${props =>
+        props.isLoading &&
+        css`
+            display: flex;
+            align-items: center;
+        `}
 `
 
 function Button(props) {

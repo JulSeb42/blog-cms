@@ -19,16 +19,6 @@ import getToday from "../../components/utils/getToday"
 import getTimeNow from "../../components/utils/getTimeNow"
 import slugify from "../../components/utils/slugify"
 
-// title: String,
-// date: String,
-// time: String,
-// category: Array,
-// slug: String,
-// draft: Boolean,
-// author
-// body: String,
-// imageUrl: String,
-
 function NewPost({ edited, setEdited }) {
     const { user, updateUser } = useContext(AuthContext)
     const navigate = useNavigate()

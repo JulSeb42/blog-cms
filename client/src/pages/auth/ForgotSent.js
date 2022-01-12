@@ -8,7 +8,9 @@ import * as Font from "../../components/styles/Font"
 function ForgotSent() {
     return (
         <ContainerForm title="Email sent successfully">
-            <Font.P>We just sent you an email with a link to reset your password.</Font.P>
+            <Font.P>
+                We just sent you an email with a link to reset your password.
+            </Font.P>
         </ContainerForm>
     )
 }

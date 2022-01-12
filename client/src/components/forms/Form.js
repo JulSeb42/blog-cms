@@ -23,13 +23,19 @@ function Form(props) {
             {conditionsButtons && (
                 <ButtonsContainer>
                     {props.btnprimary && (
-                        <Button type="submit" btnstyle="primary" isLoading={props.isLoading}>
+                        <Button
+                            type="submit"
+                            btnstyle="primary"
+                            isLoading={props.isLoading}
+                        >
                             {props.btnprimary}
                         </Button>
                     )}
 
                     {props.btncancel && (
-                        <Button to={props.btncancel} btnstyle="secondary">Cancel</Button>
+                        <Button to={props.btncancel} btnstyle="secondary">
+                            Cancel
+                        </Button>
                     )}
 
                     {props.btnreset && (

@@ -15,7 +15,14 @@ const Image = styled(AsyncImage)`
 `
 
 function ProfilePicture(props) {
-    return <Image src={props.src} alt={props.alt} size={props.size || 150} {...props} />
+    return (
+        <Image
+            src={props.src}
+            alt={props.alt}
+            size={props.size || 150}
+            {...props}
+        />
+    )
 }
 
 export default ProfilePicture

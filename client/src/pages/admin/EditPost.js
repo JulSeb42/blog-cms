@@ -20,16 +20,6 @@ import ErrorContainer from "../../components/forms/ErrorContainer"
 import getToday from "../../components/utils/getToday"
 import getTimeNow from "../../components/utils/getTimeNow"
 
-// title: String,
-// category: Array,
-// slug: String,
-// draft: Boolean,
-// tags
-// body: String,
-// imageUrl: String,
-// dateEdited: String,
-// timeEdited: String,
-
 function EditPost({ post, edited, setEdited, ...props }) {
     const { user } = useContext(AuthContext)
     const navigate = useNavigate()
@@ -40,7 +30,9 @@ function EditPost({ post, edited, setEdited, ...props }) {
     const [metaDescription, setMetaDescription] = useState(post.metaDescription)
     const [body, setBody] = useState(post.body)
     const [draft, setDraft] = useState(
-        post.author._id !== user._id && user.role === "writer" ? true : post.draft
+        post.author._id !== user._id && user.role === "writer"
+            ? true
+            : post.draft
     )
     const [featured, setFeatured] = useState(post.featured)
     const [imageUrl, setImageUrl] = useState(post.imageUrl)
@@ -112,14 +104,17 @@ function EditPost({ post, edited, setEdited, ...props }) {
             featured,
         }
 
-        axios.put(`/posts/edit-post/${post._id}`, requestBody).then(() => {
-            setEdited(!edited)
-            navigate("/dashboard")
-            window.location.reload(false)
-        }).catch(err => {
-            const errorDescription = err.response.data.message
-            setErrorMessage(errorDescription)
-        })
+        axios
+            .put(`/posts/edit-post/${post._id}`, requestBody)
+            .then(() => {
+                setEdited(!edited)
+                navigate("/dashboard")
+                window.location.reload(false)
+            })
+            .catch(err => {
+                const errorDescription = err.response.data.message
+                setErrorMessage(errorDescription)
+            })
     }
 
     return (

@@ -9,9 +9,6 @@ import * as Variables from "../styles/Variables"
 
 // Styles
 const Container = styled(Font.P)`
-    ${'' /* display: flex;
-    align-items: center; */}
-
     a:after {
         content: "/";
         margin: 0 ${Variables.Margins.XXS};

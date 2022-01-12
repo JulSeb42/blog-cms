@@ -38,9 +38,7 @@ const LinksContainer = styled.div`
     }
 `
 
-const Copy = styled(Font.P)`
-
-`
+const Copy = styled(Font.P)``
 
 // Links
 const Links = [
@@ -67,7 +65,9 @@ function Footer() {
         <Container>
             <LinksContainer>
                 {Links.map((link, i) => (
-                    <Link to={link.url} key={i}>{link.text}</Link>
+                    <Link to={link.url} key={i}>
+                        {link.text}
+                    </Link>
                 ))}
             </LinksContainer>
 

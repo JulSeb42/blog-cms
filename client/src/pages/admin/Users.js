@@ -42,14 +42,13 @@ function Users() {
 
     // Filter by role
     const [role, setRole] = useState("all")
-    // const [author, setAuthor] = useState("all")
     const handleAuthors = e => setRole(e.target.value)
 
     if (role !== "all") {
         results = results.filter(user => user.role === role)
     }
 
-    // // Filter by status
+    // Filter by status
     const [status, setStatus] = useState("all")
     const handleStatus = e => setStatus(e.target.value)
 

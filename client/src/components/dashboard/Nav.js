@@ -10,7 +10,6 @@ import { AuthContext } from "../../context/auth"
 import Icon from "../ui/Icon"
 
 // Data
-// import SiteData from "../data/SiteData"
 import GlobalData from "../data/GlobalData"
 
 // Styles

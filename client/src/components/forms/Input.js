@@ -110,7 +110,9 @@ function Input(props) {
                         <Validation>
                             <Icon
                                 name={
-                                    props.value.length < 6 ? "close-circle" : "check-circle"
+                                    props.value.length < 6
+                                        ? "close-circle"
+                                        : "check-circle"
                                 }
                                 color={
                                     props.value.length < 6

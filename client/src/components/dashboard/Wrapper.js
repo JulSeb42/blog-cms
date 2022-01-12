@@ -23,9 +23,11 @@ const Container = styled.main`
         grid-column: ${Variables.Container.Column};
     }
 
-    ${props => !props.full && css`
-        margin-left: 300px;
-    `}
+    ${props =>
+        !props.full &&
+        css`
+            margin-left: 300px;
+        `}
 `
 
 function Wrapper(props) {

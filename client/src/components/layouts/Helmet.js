@@ -8,18 +8,6 @@ import SiteData from "../data/SiteData"
 import GlobalData from "../data/GlobalData"
 
 function Helmet(props) {
-    // Get meta from backend
-    const [globalData, setGlobalData] = useState({})
-
-    useEffect(() => {
-        axios
-            .get("/global/global")
-            .then(res => {
-                setGlobalData(res.data[0])
-            })
-            .catch(err => console.log(err))
-    }, [])
-
     return (
         <HelmetMeta>
             <title>
@@ -27,7 +15,7 @@ function Helmet(props) {
                     GlobalData() !== undefined ? GlobalData().name : "Site name"
                 }`}
             </title>
-            <link rel="icon" href={globalData.favicon} />
+            <link rel="icon" href={GlobalData().favicon} />
             <meta content="IE=edge" http-equiv="X-UA-Compatible" />
             <meta
                 content="width=device-width, initial-scale=1"

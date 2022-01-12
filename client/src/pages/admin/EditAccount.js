@@ -27,7 +27,7 @@ function EditAccount({ edited, setEdited }) {
 
     const handleFullName = e => setFullName(e.target.value)
     const handleBio = e => setBio(e.target.value)
-    
+
     const handleFileUpload = e => {
         e.preventDefault()
         const uploadData = new FormData()

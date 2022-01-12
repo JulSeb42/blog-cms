@@ -30,7 +30,7 @@ const Input = styled.input`
         & ~ label {
             cursor: not-allowed;
         }
-        
+
         & ~ label:before {
             border-color: ${Variables.Colors.DarkGray};
         }
