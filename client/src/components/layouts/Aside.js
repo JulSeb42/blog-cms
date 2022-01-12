@@ -45,9 +45,11 @@ function Aside(props) {
             .catch(err => console.log(err))
     }, [])
 
-    const featuredAuthors = allAuthors.filter(
-        author => author.featured === true
-    )
+    const featuredAuthors = allAuthors
+        .filter(author => author.featured === true)
+        .sort((a, b) => {
+            return a.fullName > b.fullName ? 1 : -1
+        })
 
     let sortedPosts = allPosts
         .sort((a, b) => {

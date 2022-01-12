@@ -66,9 +66,13 @@ function PostsList() {
             <Font.H1>All posts</Font.H1>
 
             <ListPosts>
-                {results.map(post => (
-                    <Card post={post} key={post._id} />
-                ))}
+                {allPosts.length === 0 ? (
+                    <Font.P>No post yet.</Font.P>
+                ) : results.length === 0 ? (
+                    <Font.P>Your search did not return anything.</Font.P>
+                ) : (
+                    results.map(post => <Card post={post} key={post._id} />)
+                )}
             </ListPosts>
         </Page>
     )
