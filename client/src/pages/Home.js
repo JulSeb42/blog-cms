@@ -11,6 +11,7 @@ import { Container, Content } from "../components/layouts/Container"
 import ListPosts from "../components/post/ListPosts"
 import Card from "../components/post/Card"
 import Aside from "../components/layouts/Aside"
+import Button from "../components/ui/Button"
 
 // Data
 import GlobalData from "../components/data/GlobalData"
@@ -51,6 +52,8 @@ function Home() {
                             <Card post={post} key={post._id} />
                         ))}
                     </ListPosts>
+
+                    <Button to="/posts" btnstyle="primary">All articles</Button>
                 </Content>
 
                 <Aside />

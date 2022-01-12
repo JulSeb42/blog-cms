@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom"
 // Components
 import Helmet from "./Helmet"
 import Header from "./Header"
+import Footer from "./Footer"
 
 function Page(props) {
     const location = useLocation().pathname
@@ -20,6 +21,8 @@ function Page(props) {
             {!location.match(/^\/dashboard.*$/gim) && <Header />}
 
             {props.children}
+
+            {!location.match(/^\/dashboard.*$/gim) && <Footer />}
         </>
     )
 }

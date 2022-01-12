@@ -18,6 +18,7 @@ const Container = styled.button`
     padding: ${Variables.Margins.XS} ${Variables.Margins.S};
     border-radius: ${Variables.Radiuses.S};
     transition: ${Variables.Transitions.Short};
+    text-align: center;
 
     ${props =>
         props.btnstyle === "primary" &&

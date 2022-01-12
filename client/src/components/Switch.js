@@ -7,6 +7,10 @@ import { Navigate } from "react-router-dom"
 // Pages
 import Home from "../pages/Home"
 import NotFound from "../pages/NotFound"
+import About from "../pages/About"
+import Contact from "../pages/Contact"
+import Privacy from "../pages/Privacy"
+import Impressum from "../pages/Impressum"
 
 // Auth
 import Signup from "../pages/auth/Signup"
@@ -30,6 +34,10 @@ import Users from "../pages/admin/Users"
 // Posts
 import PostsList from "../pages/posts/PostsList"
 import PostDetail from "../pages/posts/PostDetail"
+import CategoriesList from "../pages/categories/CategoriesList"
+import CategoryDetail from "../pages/categories/CategoryDetail"
+import AuthorList from "../pages/authors/AuthorList"
+import AuthorDetail from "../pages/authors/AuthorDetail"
 
 // Utils
 import ProtectedRoutes from "./utils/ProtectedRoutes"
@@ -52,9 +60,28 @@ function Switch() {
             .catch(err => console.log(err))
     }, [])
 
+    let allCategories = allPosts.map(post => post.category)
+    let uniqCategories = [...new Set(allCategories)]
+
     return (
         <Routes>
             <Route path="/" element={<Home />} preload={scrollToTop()} />
+            <Route path="/about" element={<About />} preload={scrollToTop()} />
+            <Route
+                path="/contact"
+                element={<Contact />}
+                preload={scrollToTop()}
+            />
+            <Route
+                path="/privacy-policy"
+                element={<Privacy />}
+                preload={scrollToTop()}
+            />
+            <Route
+                path="/impressum"
+                element={<Impressum />}
+                preload={scrollToTop()}
+            />
 
             {/* Auth */}
             <Route
@@ -197,6 +224,34 @@ function Switch() {
                     element={<PostDetail post={post} />}
                     preload={scrollToTop()}
                     key={post._id}
+                />
+            ))}
+            <Route
+                path="/posts/all-categories"
+                element={<CategoriesList />}
+                preload={scrollToTop()}
+            />
+            {uniqCategories.map((category, i) => (
+                <Route
+                    path={`/posts/${category}`}
+                    element={<CategoryDetail category={category} />}
+                    preload={scrollToTop()}
+                    key={i}
+                />
+            ))}
+            <Route
+                path="/authors"
+                element={<AuthorList />}
+                preload={scrollToTop()}
+            />
+            {allUsers.map(user => (
+                <Route
+                    path={`/authors/${user.fullName
+                        .toLowerCase()
+                        .replaceAll(" ", "-")}`}
+                    element={<AuthorDetail author={user} />}
+                    preload={scrollToTop()}
+                    key={user._id}
                 />
             ))}
 

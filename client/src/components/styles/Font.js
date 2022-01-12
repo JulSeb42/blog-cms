@@ -121,7 +121,7 @@ export const List = styled.ul`
         display: grid;
         grid-template-columns: 14px 1fr;
         gap: ${Variables.Margins.XXS};
-        padding-left: ${Variables.Margins.S};
+        padding-left: ${Variables.Margins.XS};
 
         &:before {
             ${IconMixin({

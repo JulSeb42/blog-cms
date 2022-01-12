@@ -1,26 +1,21 @@
 // Packages
 import React from "react"
-import { Link } from "react-router-dom"
 
 // Components
 import * as Font from "../components/styles/Font"
 import Page from "../components/layouts/Page"
 import { Container, Content } from "../components/layouts/Container"
 
-function NotFound() {
+function Contact() {
     return (
-        <Page title="Not found!">
+        <Page title="Contact">
             <Container noaside header>
                 <Content>
-                    <Font.H1>Page not found!</Font.H1>
-
-                    <Font.P>
-                        <Link to="/">Back to homepage.</Link>
-                    </Font.P>
+                    <Font.H1>Contact page</Font.H1>
                 </Content>
             </Container>
         </Page>
     )
 }
 
-export default NotFound
+export default Contact

@@ -1,5 +1,5 @@
 // Packages
-import React, { useContext } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { Link, NavLink } from "react-router-dom"
 import styled, { css } from "styled-components"
 
@@ -14,13 +14,14 @@ import GlobalData from "../data/GlobalData"
 const Container = styled.header`
     width: 100%;
     position: fixed;
-    top: 0;
+    top: ${props => props.top};
     left: 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: ${Variables.Margins.L} 5vw;
     z-index: 999;
+    transition: ${Variables.Transitions.Short};
 
     a {
         color: ${Variables.Colors.Primary};
@@ -70,8 +71,20 @@ const NavLinkStyled = styled(NavLink)`
 function Header(props) {
     const { isLoggedIn } = useContext(AuthContext)
 
+    const [topPosition, setTopPosition] = useState(0)
+
+    useEffect(() => {
+        window.addEventListener("scroll", () => {
+            if (window.pageYOffset >= 400) {
+                setTopPosition("-150px")
+            } else {
+                setTopPosition(0)
+            }
+        })
+    })
+
     return (
-        <Container {...props}>
+        <Container top={topPosition} {...props}>
             <Logo to="/">{GlobalData().name}</Logo>
 
             <Nav>
