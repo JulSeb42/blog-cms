@@ -2,11 +2,15 @@
 import React, { useEffect, useState } from "react"
 import axios from "axios"
 import styled from "styled-components"
+import { useLocation } from "react-router-dom"
 import Link from "../utils/LinkScroll"
 
 // Components
 import * as Variables from "../styles/Variables"
 import * as Font from "../styles/Font"
+import Form from "../forms/Form"
+import Input from "../forms/Input"
+import Select from "../forms/Select"
 
 // Styles
 const Container = styled.aside`
@@ -24,6 +28,8 @@ const Item = styled.div`
 `
 
 function Aside(props) {
+    const location = useLocation().pathname
+
     const [allPosts, setAllPosts] = useState([])
     const [allAuthors, setAllAuthors] = useState([])
 
@@ -39,17 +45,56 @@ function Aside(props) {
             .catch(err => console.log(err))
     }, [])
 
-    const featuredAuthors = allAuthors.filter(author => author.featured === true)
+    const featuredAuthors = allAuthors.filter(
+        author => author.featured === true
+    )
 
-    let sortedPosts = allPosts.sort((a, b) => {
-        if (a.date === b.date) {
-            return b.time.localeCompare(a.time)
-        }
-        return new Date(b.date) - new Date(a.date)
-    }).slice(0, 5)
+    let sortedPosts = allPosts
+        .sort((a, b) => {
+            if (a.date === b.date) {
+                return b.time.localeCompare(a.time)
+            }
+            return new Date(b.date) - new Date(a.date)
+        })
+        .slice(0, 5)
+
+    let allCategories = allPosts.map(post => post.category)
+    let uniqCategories = [...new Set(allCategories)].sort()
 
     return (
         <Container>
+            {/* Search => search by title / tags, filter by categories, */}
+            {location === "/posts" && (
+                <Form as="div">
+                    <Input
+                        label="Search"
+                        placeholder="By title, author or tags."
+                        onChange={props.onChangeSearch}
+                        value={props.valueSearch}
+                    />
+
+                    {uniqCategories.length > 0 && (
+                        <Select
+                            label="Filter by category"
+                            onChange={props.onChangeCategory}
+                        >
+                            <option value="all">All</option>
+                            {uniqCategories.map((category, i) => (
+                                <option
+                                    key={i}
+                                    value={category
+                                        .toLowerCase()
+                                        .replace(" ", "")}
+                                >
+                                    {category.charAt(0).toUpperCase() +
+                                        category.slice(1)}
+                                </option>
+                            ))}
+                        </Select>
+                    )}
+                </Form>
+            )}
+
             {!props.noposts && allPosts.length > 0 && (
                 <Item>
                     <Font.H4>Latest posts</Font.H4>
@@ -67,7 +112,9 @@ function Aside(props) {
                             </li>
                         ))}
 
-                        <li><Link to="/posts">All posts</Link></li>
+                        <li>
+                            <Link to="/posts">All posts</Link>
+                        </li>
                     </Font.ListLinks>
                 </Item>
             )}
@@ -94,29 +141,6 @@ function Aside(props) {
                     </Font.ListLinks>
                 </Item>
             )}
-
-            {/* {!props.nocategories && (
-                <Item>
-                    <Font.H4>Categories</Font.H4>
-
-                    <Font.ListLinks>
-                        {uniqCategories.map((category, i) => (
-                            <li key={i}>
-                                <Link to={`/posts/${category}`}>
-                                    {category.charAt(0).toUpperCase() +
-                                        category.slice(1)}
-                                </Link>
-                            </li>
-                        ))}
-
-                        <li>
-                            <Link to="/posts/all-categories">
-                                All categories
-                            </Link>
-                        </li>
-                    </Font.ListLinks>
-                </Item>
-            )} */}
         </Container>
     )
 }

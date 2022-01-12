@@ -35,8 +35,10 @@ function Page(props) {
                     header={props.header}
                 >
                     <Content>
-                        {props.breadcrumbs && <Breadcrumbs items={props.breadcrumbs} />}
-                        
+                        {props.breadcrumbs && (
+                            <Breadcrumbs items={props.breadcrumbs} />
+                        )}
+
                         {props.children}
                     </Content>
 
@@ -44,6 +46,9 @@ function Page(props) {
                         <Aside
                             noauthors={props.noauthors}
                             noposts={props.noposts}
+                            onChangeSearch={props.onChangeSearch}
+                            valueSearch={props.valueSearch}
+                            onChangeCategory={props.onChangeCategory}
                         />
                     )}
                 </Container>
