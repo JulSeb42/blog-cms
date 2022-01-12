@@ -1,7 +1,7 @@
 // Packages
 import React, { useState, useContext, useEffect } from "react"
 import axios from "axios"
-import { Navigate, useNavigate } from "react-router-dom"
+import { Navigate } from "react-router-dom"
 
 // Components
 import { AuthContext } from "../../context/auth"
@@ -11,10 +11,10 @@ import Form from "../../components/forms/Form"
 import Input from "../../components/forms/Input"
 import service from "../../components/services/cloudinary"
 import ErrorContainer from "../../components/forms/ErrorContainer"
+import Alert from "../../components/ui/Alert"
 
 function Global() {
     const { user } = useContext(AuthContext)
-    const navigate = useNavigate()
 
     // Get meta from backend
     const [name, setName] = useState("")
@@ -97,7 +97,7 @@ function Global() {
         axios
             .put("/global/edit", requestBody)
             .then(() => {
-                navigate("/dashboard")
+                setIsVisible(true)
             })
             .catch(err => {
                 const errorDescription = err.response.data.message
@@ -105,73 +105,92 @@ function Global() {
             })
     }
 
+    // Show / hide alert
+    const [isVisible, setIsVisible] = useState(false)
+
+    if (isVisible) {
+        setTimeout(() => {
+            setIsVisible(false)
+        }, 3000)
+    }
+
     return user.role !== "admin" ? (
         <Navigate to="/dashboard" />
     ) : (
-        <Wrapper title="Edit global information">
-            <Font.H1>Edit global information</Font.H1>
+        <>
+            <Wrapper title="Edit global information">
+                <Font.H1>Edit global information</Font.H1>
 
-            <Form
-                btnprimary="Save"
-                isLoading={isLoading}
-                onSubmit={handleSubmit}
-            >
-                <Input
-                    label="Site name"
-                    id="name"
-                    onChange={handleName}
-                    value={name}
-                />
+                <Form
+                    btnprimary="Save"
+                    isLoading={isLoading}
+                    onSubmit={handleSubmit}
+                >
+                    <Input
+                        label="Site name"
+                        id="name"
+                        onChange={handleName}
+                        value={name}
+                    />
 
-                <Input
-                    label="Site baseline"
-                    id="baseline"
-                    onChange={handleBaseline}
-                    value={baseline}
-                />
+                    <Input
+                        label="Site baseline"
+                        id="baseline"
+                        onChange={handleBaseline}
+                        value={baseline}
+                    />
 
-                <Input
-                    label="Meta description"
-                    id="description"
-                    inputtype="textarea"
-                    counter={160}
-                    onChange={handleMetaDescription}
-                    value={metaDescription}
-                />
+                    <Input
+                        label="Meta description"
+                        id="description"
+                        inputtype="textarea"
+                        counter={160}
+                        onChange={handleMetaDescription}
+                        value={metaDescription}
+                    />
 
-                <Input
-                    label="Email"
-                    id="email"
-                    type="email"
-                    onChange={handleEmail}
-                    value={email}
-                />
+                    <Input
+                        label="Email"
+                        id="email"
+                        type="email"
+                        onChange={handleEmail}
+                        value={email}
+                    />
 
-                <Input
-                    label="Favicon"
-                    id="favicon"
-                    type="file"
-                    onChange={e => handleFavicon(e)}
-                />
+                    <Input
+                        label="Favicon"
+                        id="favicon"
+                        type="file"
+                        onChange={e => handleFavicon(e)}
+                    />
 
-                <Input
-                    label="Cover"
-                    id="cover"
-                    type="file"
-                    onChange={e => handleCover(e)}
-                />
+                    <Input
+                        label="Cover"
+                        id="cover"
+                        type="file"
+                        onChange={e => handleCover(e)}
+                    />
 
-                <Input
-                    label="Keywords"
-                    id="keywords"
-                    helper="Separate all keywords with a comma."
-                    onChange={handleKeywords}
-                    value={keywords}
-                />
-            </Form>
+                    <Input
+                        label="Keywords"
+                        id="keywords"
+                        helper="Separate all keywords with a comma."
+                        onChange={handleKeywords}
+                        value={keywords}
+                    />
+                </Form>
 
-            {errorMessage && <ErrorContainer>{errorMessage}</ErrorContainer>}
-        </Wrapper>
+                {errorMessage && (
+                    <ErrorContainer>{errorMessage}</ErrorContainer>
+                )}
+            </Wrapper>
+
+            <Alert
+                alertstyle="success"
+                message="Success, your changes were saved!"
+                isVisible={isVisible}
+            />
+        </>
     )
 }
 

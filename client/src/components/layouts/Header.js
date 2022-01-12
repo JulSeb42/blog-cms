@@ -68,6 +68,26 @@ const NavLinkStyled = styled(NavLink)`
     }
 `
 
+// Links
+const Links = [
+    {
+        title: "Home",
+        url: "/",
+    },
+    {
+        title: "Posts",
+        url: "/posts/1",
+    },
+    {
+        title: "About",
+        url: "/about",
+    },
+    {
+        title: "Contact",
+        url: "/contact",
+    },
+]
+
 function Header(props) {
     const { isLoggedIn } = useContext(AuthContext)
 
@@ -88,9 +108,9 @@ function Header(props) {
             <Logo to="/">{GlobalData().name}</Logo>
 
             <Nav>
-                <NavLinkStyled to="/">Home</NavLinkStyled>
-
-                <NavLinkStyled to="/posts">Posts</NavLinkStyled>
+                {Links.map((link, i) => (
+                    <NavLinkStyled to={link.url} key={i}>{link.title}</NavLinkStyled>
+                ))}
 
                 {isLoggedIn && (
                     <NavLinkStyled to="/dashboard">Dashboard</NavLinkStyled>

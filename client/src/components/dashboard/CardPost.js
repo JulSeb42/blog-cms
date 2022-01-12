@@ -85,6 +85,8 @@ function CardPost({ post, ...props }) {
                 <IconButton
                     to={`/posts/${post.category}/${post.slug}`}
                     aria-label="Read post"
+                    target="_blank"
+                    rel="noreferrer noopener"
                 >
                     <Icon name="file" size={24} color="currentColor" />
                 </IconButton>

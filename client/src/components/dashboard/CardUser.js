@@ -10,6 +10,7 @@ import ButtonsContainer from "../forms/ButtonsContainer"
 import Button from "../ui/Button"
 import Icon from "../ui/Icon"
 import Toggle from "../forms/Toggle"
+import Alert from "../ui/Alert"
 
 // Styles
 const Container = styled.div`
@@ -73,13 +74,17 @@ function CardUser({ user, ...props }) {
     const [isOpen, setIsOpen] = useState(false)
     const open = isOpen ? "open" : ""
 
+    const [isApproved, setIsApproved] = useState(user.approved)
+
     // Approve user
     const handleApprove = () => {
         axios
             .put(`/users/approve/${user._id}`)
             .then(() => {
-                alert(`Success, you approved ${user.fullName}`)
-                window.location.reload(false)
+                setMessageAlert(`Success, you approved ${user.fullName}`)
+                setAlertStyle("success")
+                setIsVisible(true)
+                setIsApproved(true)
             })
             .catch(err => console.log(err))
     }
@@ -89,8 +94,9 @@ function CardUser({ user, ...props }) {
         axios
             .delete(`/users/delete-user/${user._id}`)
             .then(() => {
-                alert(`Success, you deleted ${user.fullName}`)
-                window.location.reload(false)
+                setMessageAlert(`Success, you deleted ${user.fullName}`)
+                setAlertStyle("success")
+                setIsVisible(true)
             })
             .catch(err => console.log(err))
     }
@@ -104,79 +110,102 @@ function CardUser({ user, ...props }) {
             axios
                 .put(`/users/feature/${user._id}`, { featured: true })
                 .then(() => {
-                    alert(`Success, ${user.fullName} is now featured`)
+                    setMessageAlert(`${user.fullName} is now featured`)
+                    setAlertStyle("success")
+                    setIsVisible(true)
                 })
         } else {
             setFeatured(false)
             axios
                 .put(`/users/feature/${user._id}`, { featured: false })
                 .then(() => {
-                    alert(`Success, ${user.fullName} is not featured`)
+                    setMessageAlert(`${user.fullName} is not featured`)
+                    setAlertStyle("danger")
+                    setIsVisible(true)
                 })
         }
     }
 
+    // Show / hide alert
+    const [isVisible, setIsVisible] = useState(false)
+    const [messageAlert, setMessageAlert] = useState(undefined)
+    const [alertStyle, setAlertStyle] = useState(undefined)
+
+    if (isVisible) {
+        setTimeout(() => {
+            setIsVisible(false)
+        }, 3000)
+    }
+
     return (
-        <Container className={open}>
-            <Content>
-                <Font.Strong>{user.fullName}</Font.Strong>
+        <>
+            <Container className={open}>
+                <Content>
+                    <Font.Strong>{user.fullName}</Font.Strong>
 
-                <IconsContainer>
-                    <Toggle
-                        label="Featured"
-                        id={`featured-${user._id}`}
-                        onChange={handleFeatured}
-                        defaultChecked={featured}
-                        value={featured}
-                    />
+                    <IconsContainer>
+                        <Toggle
+                            label="Featured"
+                            id={`featured-${user._id}`}
+                            onChange={handleFeatured}
+                            defaultChecked={featured}
+                            value={featured}
+                        />
 
-                    {user.approved === false && (
+                        {isApproved === false && (
+                            <IconButton>
+                                <Icon
+                                    name="check"
+                                    color="currentColor"
+                                    size={24}
+                                    aria-label="Approve user"
+                                    className="check"
+                                    onClick={handleApprove}
+                                />
+                            </IconButton>
+                        )}
+
                         <IconButton>
                             <Icon
-                                name="check"
+                                name="trash"
                                 color="currentColor"
                                 size={24}
-                                aria-label="Approve user"
-                                className="check"
-                                onClick={handleApprove}
+                                aria-label="Delete user"
+                                className="trash"
+                                onClick={() => setIsOpen(!isOpen)}
                             />
                         </IconButton>
-                    )}
+                    </IconsContainer>
+                </Content>
 
-                    <IconButton>
-                        <Icon
-                            name="trash"
-                            color="currentColor"
-                            size={24}
-                            aria-label="Delete user"
-                            className="trash"
-                            onClick={() => setIsOpen(!isOpen)}
-                        />
-                    </IconButton>
-                </IconsContainer>
-            </Content>
+                {isOpen && (
+                    <Danger>
+                        <Font.P>
+                            Are you sure you want to delete {user.fullName}?
+                        </Font.P>
 
-            {isOpen && (
-                <Danger>
-                    <Font.P>
-                        Are you sure you want to delete {user.fullName}?
-                    </Font.P>
+                        <ButtonsContainer>
+                            <Button btnstyle="danger" onClick={handleDelete}>
+                                Yes, delete
+                            </Button>
 
-                    <ButtonsContainer>
-                        <Button btnstyle="danger" onClick={handleDelete}>
-                            Yes, delete
-                        </Button>
+                            <Button
+                                btnstyle="secondary"
+                                onClick={() => setIsOpen(!isOpen)}
+                            >
+                                No, cancel
+                            </Button>
+                        </ButtonsContainer>
+                    </Danger>
+                )}
+            </Container>
 
-                        <Button
-                            btnstyle="secondary"
-                            onClick={() => setIsOpen(!isOpen)}
-                        >
-                            No, cancel
-                        </Button>
-                    </ButtonsContainer>
-                </Danger>
-            )}
-        </Container>
+            <Alert
+                alertstyle={alertStyle}
+                message={messageAlert}
+                isVisible={isVisible}
+            />
+        </>
     )
 }
 

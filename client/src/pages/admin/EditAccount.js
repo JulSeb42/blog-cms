@@ -13,6 +13,7 @@ import Wrapper from "../../components/dashboard/Wrapper"
 import InputProfilePicture from "../../components/forms/InputProfilePicture"
 import service from "../../components/services/cloudinary"
 import ErrorContainer from "../../components/forms/ErrorContainer"
+import Alert from "../../components/ui/Alert"
 
 function EditAccount({ edited, setEdited }) {
     const { user, updateUser, logoutUser } = useContext(AuthContext)
@@ -65,7 +66,7 @@ function EditAccount({ edited, setEdited }) {
                 const { user } = res.data
                 updateUser(user)
                 setEdited(!edited)
-                navigate("/dashboard")
+                setIsVisible(true)
             })
             .catch(err => {
                 const errorDescription = err.response.data.message
@@ -84,58 +85,79 @@ function EditAccount({ edited, setEdited }) {
             .catch(err => console.log(err))
     }
 
+    // Show / hide alert
+    const [isVisible, setIsVisible] = useState(false)
+
+    if (isVisible) {
+        setTimeout(() => {
+            setIsVisible(false)
+        }, 3000)
+    }
+
     return (
-        <Wrapper title="Edit your account">
-            <Font.H1>Edit your account</Font.H1>
+        <>
+            <Wrapper title="Edit your account">
+                <Font.H1>Edit your account</Font.H1>
 
-            <Form
-                btnprimary="Save changes"
-                btncancel="/dashboard"
-                onSubmit={handleSubmit}
-                isLoading={isLoading}
-            >
-                <Input
-                    label="Full name"
-                    id="fullName"
-                    onChange={handleFullName}
-                    value={fullName}
-                />
+                <Form
+                    btnprimary="Save changes"
+                    btncancel="/dashboard"
+                    onSubmit={handleSubmit}
+                    isLoading={isLoading}
+                >
+                    <Input
+                        label="Full name"
+                        id="fullName"
+                        onChange={handleFullName}
+                        value={fullName}
+                    />
 
-                <Input
-                    label="Email"
-                    type="email"
-                    id="email"
-                    value={user.email}
-                    disabled
-                    helper="You can not edit your email."
-                />
+                    <Input
+                        label="Email"
+                        type="email"
+                        id="email"
+                        value={user.email}
+                        disabled
+                        helper="You can not edit your email."
+                    />
 
-                <Input
-                    label="Bio"
-                    inputtype="textarea"
-                    id="bio"
-                    counter={140}
-                    onChange={handleBio}
-                    value={bio}
-                />
+                    <Input
+                        label="Bio"
+                        inputtype="textarea"
+                        id="bio"
+                        counter={140}
+                        onChange={handleBio}
+                        value={bio}
+                    />
 
-                <InputProfilePicture
-                    label="Profile picture"
-                    src={picture}
-                    alt={user.fullName}
-                    onChange={e => handleFileUpload(e)}
-                    id="imageUrl"
-                />
-            </Form>
+                    <InputProfilePicture
+                        label="Profile picture"
+                        src={picture}
+                        alt={user.fullName}
+                        onChange={e => handleFileUpload(e)}
+                        id="imageUrl"
+                    />
+                </Form>
 
-            {errorMessage && <ErrorContainer>{errorMessage}</ErrorContainer>}
+                {errorMessage && (
+                    <ErrorContainer>{errorMessage}</ErrorContainer>
+                )}
 
-            <Font.P>
-                <Link to="/dashboard/edit-password">Edit your password.</Link>
-            </Font.P>
+                <Font.P>
+                    <Link to="/dashboard/edit-password">
+                        Edit your password.
+                    </Link>
+                </Font.P>
 
-            <DangerZone onClickPrimary={handleDelete} />
-        </Wrapper>
+                <DangerZone onClickPrimary={handleDelete} />
+            </Wrapper>
+
+            <Alert
+                alertstyle="success"
+                message="Success, your changes were saved!"
+                isVisible={isVisible}
+            />
+        </>
     )
 }
 

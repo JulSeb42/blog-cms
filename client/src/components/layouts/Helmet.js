@@ -1,7 +1,6 @@
 // Packages
-import React, { useState, useEffect } from "react"
+import React from "react"
 import { Helmet as HelmetMeta } from "react-helmet"
-import axios from "axios"
 
 // Data
 import SiteData from "../data/SiteData"
