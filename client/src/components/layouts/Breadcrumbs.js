@@ -8,9 +8,9 @@ import * as Font from "../styles/Font"
 import * as Variables from "../styles/Variables"
 
 // Styles
-const Container = styled.div`
-    display: flex;
-    align-items: center;
+const Container = styled(Font.P)`
+    ${'' /* display: flex;
+    align-items: center; */}
 
     a:after {
         content: "/";
@@ -29,7 +29,7 @@ const BreadcrumbLink = styled(Link)`
     }
 `
 
-const BreadcrumbActive = styled(Font.P)``
+const BreadcrumbActive = styled.span``
 
 function Breadcrumbs(props) {
     return (

@@ -10,6 +10,7 @@ import ProfilePicture from "./ProfilePicture"
 
 // Utils
 import getFirstName from "../utils/getFirstName"
+import slugify from "../utils/slugify"
 
 // Styles
 const Container = styled.div`
@@ -59,11 +60,7 @@ function UserCard({ user, ...props }) {
 
             {!props.detail && (
                 <Font.P>
-                    <Link
-                        to={`/authors/${user.fullName
-                            .toLowerCase()
-                            .replaceAll(" ", "-")}`}
-                    >
+                    <Link to={`/authors/${slugify(user.fullName)}`}>
                         Check {props.dashboard ? "your" : "their"} profile.
                     </Link>
                 </Font.P>

@@ -20,7 +20,7 @@ const BreadcrumbsLinks = [
     },
 ]
 
-function PostsList() {
+function PostsList({ page, setPage }) {
     // Get data
     const [allPosts, setAllPosts] = useState([])
     const [pages, setPages] = useState(0)
@@ -65,12 +65,11 @@ function PostsList() {
 
     // Pagination
     const dataLimit = 10
-    const [currentPage, setCurrentPage] = useState(1)
-
-    // const maxPages = Math.floor(pages)
+    const [currentPage, setCurrentPage] = useState(page)
 
     const goToNextPage = () => {
         setCurrentPage(page => page + 1)
+        setPage(page => page + 1)
     }
 
     const goToPreviousPage = () => {
@@ -107,7 +106,11 @@ function PostsList() {
         >
             <Font.H1>All posts</Font.H1>
 
-            {pages > 1 && <Font.P>Page {currentPage} of {pages}</Font.P>}
+            {pages > 1 && (
+                <Font.P>
+                    Page {page} of {pages}
+                </Font.P>
+            )}
 
             <ListPosts>
                 {allPosts.length === 0 ? (

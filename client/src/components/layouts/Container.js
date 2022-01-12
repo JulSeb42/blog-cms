@@ -33,3 +33,9 @@ export const Content = styled.main`
     margin-bottom: ${Variables.Margins.XXL};
     align-content: start;
 `
+
+export const Article = styled.article`
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: ${Variables.Margins.M};
+`

@@ -3,7 +3,6 @@ import styled from "styled-components"
 
 // Components
 import * as Variables from "../styles/Variables"
-import * as Font from "../styles/Font"
 
 // Styles
 export const PaginationContainer = styled.div`
@@ -45,10 +44,9 @@ export const PaginationButton = styled.button`
     &:disabled {
         cursor: not-allowed;
         color: ${Variables.Colors.DarkGray};
-        background-color: ${Variables.Colors.LightGray};
 
         &:hover {
-            background-color: ${Variables.Colors.LightGray};
+            background-color: transparent;
             color: ${Variables.Colors.DarkGray};
         }
     }

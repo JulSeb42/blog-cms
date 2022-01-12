@@ -8,6 +8,9 @@ import * as Font from "../styles/Font"
 import * as Variables from "../styles/Variables"
 import AsyncImage from "../utils/AsyncImage"
 
+// Utils
+import slugify from "../utils/slugify"
+
 // Styles
 const Container = styled(Link)`
     display: grid;
@@ -46,11 +49,7 @@ const Content = styled.div`
 
 function UserCardSmall({ author }) {
     return (
-        <Container
-            to={`/authors/${author.fullName
-                .toLowerCase()
-                .replaceAll(" ", "-")}`}
-        >
+        <Container to={`/authors/${slugify(author.fullName)}`}>
             <ImgContainer>
                 <Image src={author.imageUrl} alt={author.fullName} />
             </ImgContainer>

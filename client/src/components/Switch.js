@@ -1,8 +1,7 @@
 // Packages
 import React, { useState, useEffect } from "react"
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, Navigate } from "react-router-dom"
 import axios from "axios"
-import { Navigate } from "react-router-dom"
 
 // Pages
 import Home from "../pages/Home"
@@ -41,11 +40,13 @@ import AuthorDetail from "../pages/authors/AuthorDetail"
 // Utils
 import ProtectedRoutes from "./utils/ProtectedRoutes"
 import scrollToTop from "./utils/scrollToTop"
+import slugify from "./utils/slugify"
 
 function Switch() {
     const [allUsers, setAllUsers] = useState([])
     const [allPosts, setAllPosts] = useState([])
     const [edited, setEdited] = useState(false)
+    const [page, setPage] = useState(1)
 
     useEffect(() => {
         axios
@@ -212,14 +213,18 @@ function Switch() {
             />
 
             {/* Posts */}
+            <Route path="/posts" element={<Navigate to="/posts/1" />} />
+
             <Route
-                path="/posts"
-                element={<PostsList />}
+                exact
+                path="/posts/:page"
+                element={<PostsList page={page} setPage={setPage} />}
                 preload={scrollToTop()}
             />
+
             {allPosts.map(post => (
                 <Route
-                    path={`/posts/${post.category}/${post.slug}`}
+                    path={`/posts/${slugify(post.category)}/${post.slug}`}
                     element={<PostDetail post={post} />}
                     preload={scrollToTop()}
                     key={post._id}
@@ -227,7 +232,7 @@ function Switch() {
             ))}
             {uniqCategories.map((category, i) => (
                 <Route
-                    path={`/posts/${category}`}
+                    path={`/posts/${slugify(category)}`}
                     element={<CategoryDetail category={category} />}
                     preload={scrollToTop()}
                     key={i}
@@ -240,9 +245,7 @@ function Switch() {
             />
             {allUsers.map(user => (
                 <Route
-                    path={`/authors/${user.fullName
-                        .toLowerCase()
-                        .replaceAll(" ", "-")}`}
+                    path={`/authors/${slugify(user.fullName)}`}
                     element={<AuthorDetail author={user} />}
                     preload={scrollToTop()}
                     key={user._id}

@@ -12,6 +12,9 @@ import Form from "../forms/Form"
 import Input from "../forms/Input"
 import Select from "../forms/Select"
 
+// Utils
+import slugify from "../utils/slugify"
+
 // Styles
 const Container = styled.aside`
     grid-column: 3;
@@ -36,7 +39,7 @@ function Aside(props) {
     useEffect(() => {
         axios
             .get("/posts/posts")
-            .then(res => setAllPosts(res.data).slice(0, 5))
+            .then(res => setAllPosts(res.data))
             .catch(err => console.log(err))
 
         axios
@@ -82,12 +85,7 @@ function Aside(props) {
                         >
                             <option value="all">All</option>
                             {uniqCategories.map((category, i) => (
-                                <option
-                                    key={i}
-                                    value={category
-                                        .toLowerCase()
-                                        .replace(" ", "")}
-                                >
+                                <option key={i} value={slugify(category)}>
                                     {category.charAt(0).toUpperCase() +
                                         category.slice(1)}
                                 </option>
@@ -105,9 +103,9 @@ function Aside(props) {
                         {sortedPosts.map(post => (
                             <li key={post._id}>
                                 <Link
-                                    to={`/posts/${post.category
-                                        .toLowerCase()
-                                        .replaceAll(" ", "-")}/${post.slug}`}
+                                    to={`/posts/${slugify(post.category)}/${
+                                        post.slug
+                                    }`}
                                 >
                                     {post.title}
                                 </Link>
@@ -129,9 +127,7 @@ function Aside(props) {
                         {featuredAuthors.map(author => (
                             <li key={author._id}>
                                 <Link
-                                    to={`/authors/${author.fullName
-                                        .toLowerCase()
-                                        .replaceAll(" ", "-")}`}
+                                    to={`/authors/${slugify(author.fullName)}`}
                                 >
                                     {author.fullName}
                                 </Link>
