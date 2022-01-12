@@ -15,7 +15,7 @@ import convertDate from "../utils/convertDate"
 const Container = styled.div`
     padding-bottom: ${Variables.Margins.M};
     display: flex;
-    align-items: flex-start;
+    align-items: ${props => (props.globalPages ? "center" : "flex-start")};
 `
 
 const TextContainer = styled.div`
@@ -60,30 +60,44 @@ const IconButton = styled(Link)`
 
 function CardPost({ post, ...props }) {
     return (
-        <Container>
+        <Container globalPages={props.globalPages}>
             <TextContainer>
                 <Font.P>
-                    <Link to={`/dashboard/posts/${post._id}`}>
+                    <Link
+                        to={
+                            props.globalPages
+                                ? `/dashboard/pages/${post._id}`
+                                : `/dashboard/posts/${post._id}`
+                        }
+                    >
                         {post.title}
                     </Link>
                 </Font.P>
 
-                <Font.Label as="small">
-                    Written by <strong>{post.author.fullName}</strong> on{" "}
-                    {convertDate(post.date)} at {post.time}.
-                </Font.Label>
+                {!props.globalPages && (
+                    <>
+                        <Font.Label as="small">
+                            Written by <strong>{post.author.fullName}</strong>{" "}
+                            on {convertDate(post.date)} at {post.time}.
+                        </Font.Label>
 
-                {post.dateEdited && (
-                    <Font.Label as="small">
-                        Edited on {convertDate(post.dateEdited)} at{" "}
-                        {post.timeEdited}
-                    </Font.Label>
+                        {post.dateEdited && (
+                            <Font.Label as="small">
+                                Edited on {convertDate(post.dateEdited)} at{" "}
+                                {post.timeEdited}
+                            </Font.Label>
+                        )}
+                    </>
                 )}
             </TextContainer>
 
             <IconsContainer>
                 <IconButton
-                    to={`/posts/${post.category}/${post.slug}`}
+                    to={
+                        props.globalPages
+                            ? `/${post.slug}`
+                            : `/posts/${post.category}/${post.slug}`
+                    }
                     aria-label="Read post"
                     target="_blank"
                     rel="noreferrer noopener"
@@ -92,7 +106,11 @@ function CardPost({ post, ...props }) {
                 </IconButton>
 
                 <IconButton
-                    to={`/dashboard/posts/${post._id}`}
+                    to={
+                        props.globalPages
+                            ? `/dashboard/pages/${post._id}`
+                            : `/dashboard/posts/${post._id}`
+                    }
                     aria-label="Edit post"
                 >
                     <Icon name="edit" size={24} color="currentColor" />

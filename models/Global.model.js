@@ -12,9 +12,13 @@ const globalSchema = new Schema(
         email: String,
         cover: String,
         keywords: Array,
+        titleAbout: String,
         textAbout: String,
+        titleContact: String,
         textContact: String,
+        titlePrivacy: String,
         textPrivacy: String,
+        titleImpressum: String,
         textImpressum: String,
     },
     {

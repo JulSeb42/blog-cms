@@ -149,7 +149,12 @@ function EditAccount({ edited, setEdited }) {
                     </Link>
                 </Font.P>
 
-                <DangerZone onClickPrimary={handleDelete} />
+                <DangerZone
+                    btnopen="Delete your account"
+                    text="Are you sure you want to delete your account?"
+                    btnyes="Yes, delete my account"
+                    onClickPrimary={handleDelete}
+                />
             </Wrapper>
 
             <Alert

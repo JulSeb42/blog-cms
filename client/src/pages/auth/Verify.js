@@ -7,6 +7,7 @@ import axios from "axios"
 import Page from "../../components/layouts/Page"
 import * as Font from "../../components/styles/Font"
 import { AuthContext } from "../../context/auth"
+import ErrorContainer from "../../components/forms/ErrorContainer"
 
 function Verify({ edited, setEdited }) {
     const { user, updateUser } = useContext(AuthContext)
@@ -39,7 +40,7 @@ function Verify({ edited, setEdited }) {
                 <Link to="/dashboard">Go to your account</Link>.
             </Font.P>
 
-            {errorMessage && <Font.P>{errorMessage}</Font.P>}
+            {errorMessage && <ErrorContainer>{errorMessage}</ErrorContainer>}
         </Page>
     )
 }

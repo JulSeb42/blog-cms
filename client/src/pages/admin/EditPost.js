@@ -15,6 +15,7 @@ import service from "../../components/services/cloudinary"
 import TextPost from "../../components/forms/TextPost"
 import Toggle from "../../components/forms/Toggle"
 import ErrorContainer from "../../components/forms/ErrorContainer"
+import DangerZone from "../../components/forms/DangerZone"
 
 // Utils
 import getToday from "../../components/utils/getToday"
@@ -117,6 +118,16 @@ function EditPost({ post, edited, setEdited, ...props }) {
             })
     }
 
+    // Delete post
+    const handleDelete = () => {
+        axios
+            .delete(`/posts/post/${post._id}/delete`)
+            .then(() => {
+                navigate("/dashboard")
+            })
+            .catch(err => console.log(err))
+    }
+
     return (
         <Wrapper title={`Edit ${post.title}`}>
             <Font.H1>Edit {post.title}</Font.H1>
@@ -197,6 +208,13 @@ function EditPost({ post, edited, setEdited, ...props }) {
             </Form>
 
             {errorMessage && <ErrorContainer>{errorMessage}</ErrorContainer>}
+
+            <DangerZone
+                btnopen="Delete this post"
+                text="Are you sure you want to delete this post?"
+                btnyes="Yes, delete the post"
+                onClickPrimary={handleDelete}
+            />
         </Wrapper>
     )
 }

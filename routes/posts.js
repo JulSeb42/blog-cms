@@ -84,6 +84,7 @@ router.put("/new-post", (req, res, next) => {
     })
 })
 
+// Edit post
 router.put("/edit-post/:id", (req, res, next) => {
     const {
         title,
@@ -117,6 +118,15 @@ router.put("/edit-post/:id", (req, res, next) => {
         { new: true }
     )
         .then(updatedPost => res.status(200).json({ post: updatedPost }))
+        .catch(err => next(err))
+})
+
+// Delete post
+router.delete("/post/:id/delete", (req, res, next) => {
+    Post.findByIdAndDelete(req.params.id)
+        .then(() => {
+            res.status(200).json({ message: "Post deleted" })
+        })
         .catch(err => next(err))
 })
 

@@ -10,6 +10,7 @@ import Form from "../../components/forms/Form"
 import Input from "../../components/forms/Input"
 import * as Font from "../../components/styles/Font"
 import ErrorContainer from "../../components/forms/ErrorContainer"
+import Back from "../../components/ui/Back"
 
 function EditPassword({ edited, setEdited }) {
     const { user, updateUser } = useContext(AuthContext)
@@ -43,9 +44,11 @@ function EditPassword({ edited, setEdited }) {
         <Wrapper title="Edit your password">
             <Font.H1>Edit your password</Font.H1>
 
+            <Back to="/dashboard/edit-account">Back to edit</Back>
+
             <Form
                 btnprimary="Save changes"
-                btncancel="/dashboard"
+                btncancel="/dashboard/edit-account"
                 onSubmit={handleSubmit}
             >
                 <Input

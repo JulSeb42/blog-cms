@@ -13,6 +13,7 @@ import Toggle from "../../components/forms/Toggle"
 import TextPost from "../../components/forms/TextPost"
 import service from "../../components/services/cloudinary"
 import Back from "../../components/ui/Back"
+import ErrorContainer from "../../components/forms/ErrorContainer"
 
 // Utils
 import getToday from "../../components/utils/getToday"
@@ -188,7 +189,7 @@ function NewPost({ edited, setEdited }) {
                 />
             </Form>
 
-            {errorMessage && <Font.P>{errorMessage}</Font.P>}
+            {errorMessage && <ErrorContainer>{errorMessage}</ErrorContainer>}
         </Wrapper>
     )
 }

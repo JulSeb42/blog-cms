@@ -10,12 +10,19 @@ import * as Variables from "../styles/Variables"
 
 // Styles
 const Input = styled(ReactQuill)`
+    .ql-toolbar {
+        border-color: ${Variables.Colors.LightGray};
+        border-radius: ${Variables.Radiuses.S} ${Variables.Radiuses.S} 0 0;
+    }
+
     .ql-container {
         height: auto;
         min-height: calc(
             ${Variables.FontSizes.Body} * 10 + ${Variables.FontSizes.Body} *
                 ${Variables.LineHeight}
         );
+        border-color: ${Variables.Colors.LightGray};
+        border-radius: 0 0 ${Variables.Radiuses.S} ${Variables.Radiuses.S};
 
         .ql-editor {
             height: 100%;

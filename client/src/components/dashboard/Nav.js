@@ -90,6 +90,11 @@ const Links = [
 
 const LinksAdmin = [
     {
+        title: "Pages",
+        url: "/dashboard/pages",
+        icon: "file",
+    },
+    {
         title: "Global data",
         url: "/dashboard/global",
         icon: "database",

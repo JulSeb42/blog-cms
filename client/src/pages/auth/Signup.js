@@ -9,6 +9,7 @@ import * as Font from "../../components/styles/Font"
 import ContainerForm from "../../components/layouts/ContainerForm"
 import Form from "../../components/forms/Form"
 import Input from "../../components/forms/Input"
+import ErrorContainer from "../../components/forms/ErrorContainer"
 
 // Utils
 import getRandomString from "../../components/utils/getRandomString"
@@ -84,7 +85,7 @@ function Signup() {
                 <Link to="/dashboard/login">Login</Link>
             </Font.P>
 
-            {errorMessage && <Font.P>{errorMessage}</Font.P>}
+            {errorMessage && <ErrorContainer>{errorMessage}</ErrorContainer>}
         </ContainerForm>
     )
 }

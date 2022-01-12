@@ -6,10 +6,8 @@ import axios from "axios"
 // Pages
 import Home from "../pages/Home"
 import NotFound from "../pages/NotFound"
-import About from "../pages/About"
+import GlobalPage from "../pages/GlobalPage"
 import Contact from "../pages/Contact"
-import Privacy from "../pages/Privacy"
-import Impressum from "../pages/Impressum"
 
 // Auth
 import Signup from "../pages/auth/Signup"
@@ -29,6 +27,9 @@ import NewPost from "../pages/admin/NewPost"
 import EditPost from "../pages/admin/EditPost"
 import Global from "../pages/admin/Global"
 import Users from "../pages/admin/Users"
+import PagesDashboard from "../pages/admin/PagesDashboard"
+import AddPage from "../pages/admin/AddPage"
+import EditPage from "../pages/admin/EditPage"
 
 // Posts
 import PostsList from "../pages/posts/PostsList"
@@ -45,6 +46,7 @@ import slugify from "./utils/slugify"
 function Switch() {
     const [allUsers, setAllUsers] = useState([])
     const [allPosts, setAllPosts] = useState([])
+    const [allPages, setAllPages] = useState([])
     const [edited, setEdited] = useState(false)
     const [page, setPage] = useState(1)
 
@@ -58,6 +60,11 @@ function Switch() {
             .get("/posts/posts")
             .then(res => setAllPosts(res.data))
             .catch(err => console.log(err))
+
+        axios
+            .get("/pages/pages")
+            .then(res => setAllPages(res.data))
+            .catch(err => console.log(err))
     }, [])
 
     let allCategories = allPosts.map(post => post.category)
@@ -66,20 +73,21 @@ function Switch() {
     return (
         <Routes>
             <Route path="/" element={<Home />} preload={scrollToTop()} />
-            <Route path="/about" element={<About />} preload={scrollToTop()} />
+
+            {allPages
+                .filter(page => page.slug !== "contact")
+                .map(page => (
+                    <Route
+                        path={`/${page.slug}`}
+                        element={<GlobalPage page={page} />}
+                        preload={scrollToTop()}
+                        key={page._id}
+                    />
+                ))}
+
             <Route
                 path="/contact"
                 element={<Contact />}
-                preload={scrollToTop()}
-            />
-            <Route
-                path="/privacy-policy"
-                element={<Privacy />}
-                preload={scrollToTop()}
-            />
-            <Route
-                path="/impressum"
-                element={<Impressum />}
                 preload={scrollToTop()}
             />
 
@@ -211,6 +219,36 @@ function Switch() {
                 }
                 preload={scrollToTop()}
             />
+            <Route
+                path="/dashboard/pages"
+                element={
+                    <ProtectedRoutes redirectTo="/login">
+                        <PagesDashboard />
+                    </ProtectedRoutes>
+                }
+                preload={scrollToTop()}
+            />
+            <Route
+                path="/dashboard/pages/new-page"
+                element={
+                    <ProtectedRoutes redirectTo="/login">
+                        <AddPage />
+                    </ProtectedRoutes>
+                }
+                preload={scrollToTop()}
+            />
+            {allPages.map(page => (
+                <Route
+                    path={`/dashboard/pages/${page._id}`}
+                    element={
+                        <ProtectedRoutes redirectTo="/login">
+                            <EditPage page={page} />
+                        </ProtectedRoutes>
+                    }
+                    preload={scrollToTop()}
+                    key={page._id}
+                />
+            ))}
 
             {/* Posts */}
             <Route path="/posts" element={<Navigate to="/posts/1" />} />

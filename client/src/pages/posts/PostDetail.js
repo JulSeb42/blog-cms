@@ -31,7 +31,12 @@ function PostDetail({ post, ...props }) {
     ]
 
     return (
-        <Page title={post.title} nocontainer>
+        <Page
+            title={post.title}
+            description={post.metaDescription}
+            keywords={post.tags}
+            nocontainer
+        >
             <Cover src={post.imageUrl} alt={post.title}>
                 <Font.H1>{post.title}</Font.H1>
             </Cover>
@@ -41,6 +46,8 @@ function PostDetail({ post, ...props }) {
                     <Breadcrumbs items={BreadcrumbsLinks} />
 
                     <Article dangerouslySetInnerHTML={{ __html: post.body }} />
+
+                    
 
                     <UserCard user={post.author} />
                 </Content>
