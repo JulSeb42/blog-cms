@@ -7,6 +7,11 @@ import * as Font from "../../components/styles/Font"
 import Page from "../../components/layouts/Page"
 import ListPosts from "../../components/post/ListPosts"
 import Card from "../../components/post/Card"
+import {
+    PaginationContainer,
+    PaginationButton,
+} from "../../components/ui/Pagination"
+import Icon from "../../components/ui/Icon"
 
 // Breadcrumbs
 const BreadcrumbsLinks = [
@@ -16,12 +21,17 @@ const BreadcrumbsLinks = [
 ]
 
 function PostsList() {
+    // Get data
     const [allPosts, setAllPosts] = useState([])
+    const [pages, setPages] = useState(0)
 
     useEffect(() => {
         axios
             .get("/posts/posts")
-            .then(res => setAllPosts(res.data))
+            .then(res => {
+                setAllPosts(res.data)
+                setPages(Math.round(res.data.length / dataLimit))
+            })
             .catch(err => console.log(err))
     }, [])
 
@@ -48,7 +58,39 @@ function PostsList() {
     })
 
     if (category !== "all") {
-        results = results.filter(post => post.category.toLowerCase() === category)
+        results = results.filter(
+            post => post.category.toLowerCase() === category
+        )
+    }
+
+    // Pagination
+    const dataLimit = 10
+    const [currentPage, setCurrentPage] = useState(1)
+
+    // const maxPages = Math.floor(pages)
+
+    const goToNextPage = () => {
+        setCurrentPage(page => page + 1)
+    }
+
+    const goToPreviousPage = () => {
+        setCurrentPage(page => page - 1)
+    }
+
+    const changePage = e => {
+        const pageNumber = Number(e.target.textContent)
+        setCurrentPage(pageNumber)
+    }
+
+    const getPaginatedData = () => {
+        const startIndex = currentPage * dataLimit - dataLimit
+        const endIndex = startIndex + dataLimit
+        return results.slice(startIndex, endIndex)
+    }
+
+    const getPaginationGroup = () => {
+        let start = Math.floor((currentPage - 1) / pages) * pages
+        return new Array(pages).fill().map((_, i) => start + i + 1)
     }
 
     return (
@@ -65,15 +107,55 @@ function PostsList() {
         >
             <Font.H1>All posts</Font.H1>
 
+            {pages > 1 && <Font.P>Page {currentPage} of {pages}</Font.P>}
+
             <ListPosts>
                 {allPosts.length === 0 ? (
                     <Font.P>No post yet.</Font.P>
                 ) : results.length === 0 ? (
                     <Font.P>Your search did not return anything.</Font.P>
                 ) : (
-                    results.map(post => <Card post={post} key={post._id} />)
+                    getPaginatedData().map(post => (
+                        <Card post={post} key={post._id} />
+                    ))
                 )}
             </ListPosts>
+
+            {getPaginationGroup().length > 0 && (
+                <PaginationContainer>
+                    <PaginationButton
+                        onClick={goToPreviousPage}
+                        disabled={currentPage === 1 && "disabled"}
+                    >
+                        <Icon
+                            name="chevron-left"
+                            color="currentColor"
+                            size={16}
+                        />
+                    </PaginationButton>
+
+                    {getPaginationGroup().map((item, i) => (
+                        <PaginationButton
+                            onClick={changePage}
+                            className={currentPage === item && "active"}
+                            key={i}
+                        >
+                            {item}
+                        </PaginationButton>
+                    ))}
+
+                    <PaginationButton
+                        onClick={goToNextPage}
+                        disabled={currentPage === pages && "disabled"}
+                    >
+                        <Icon
+                            name="chevron-right"
+                            color="currentColor"
+                            size={16}
+                        />
+                    </PaginationButton>
+                </PaginationContainer>
+            )}
         </Page>
     )
 }
