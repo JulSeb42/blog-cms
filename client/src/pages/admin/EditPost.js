@@ -182,7 +182,7 @@ function EditPost({ post, edited, setEdited, ...props }) {
                 <TextPost label="Body" value={body} onChange={setBody} />
 
                 <Toggle
-                    label="Feature this article"
+                    label="Feature this post"
                     id="featured"
                     onChange={handleFeatured}
                     defaultChecked={featured}

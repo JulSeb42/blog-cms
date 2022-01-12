@@ -128,11 +128,9 @@ function Dashboard() {
                     <Font.P>No posts yet!</Font.P>
                 ) : results.length === 0 && author !== "all" ? (
                     status === "all" ? (
-                        <Font.P>{author} did not write any article yet.</Font.P>
+                        <Font.P>{author} did not write any post yet.</Font.P>
                     ) : status === "published" ? (
-                        <Font.P>
-                            {author} did not publish any article yet.
-                        </Font.P>
+                        <Font.P>{author} did not publish any post yet.</Font.P>
                     ) : (
                         <Font.P>{author} did not add any draft yet.</Font.P>
                     )

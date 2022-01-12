@@ -7,6 +7,13 @@ import Link from "../../components/utils/LinkScroll"
 import * as Font from "../../components/styles/Font"
 import Page from "../../components/layouts/Page"
 
+// Breadcrumbs
+const BreadcrumbsLinks = [
+    {
+        title: "Posts",
+    },
+]
+
 function PostsList() {
     const [allPosts, setAllPosts] = useState([])
 
@@ -17,19 +24,20 @@ function PostsList() {
             .catch(err => console.log(err))
     }, [])
 
-    console.log(allPosts)
-
     return (
-        <Page title="All articles" headerbackground padding header>
-            <Font.H1>All articles</Font.H1>
+        <Page
+            title="All posts"
+            headerbackground
+            padding
+            header
+            breadcrumbs={BreadcrumbsLinks}
+        >
+            <Font.H1>All posts</Font.H1>
 
             <ul>
                 {allPosts.map(post => (
-                    <li>
-                        <Link
-                            to={`/posts/${post.category}/${post.slug}`}
-                            key={post._id}
-                        >
+                    <li key={post._id}>
+                        <Link to={`/posts/${post.category}/${post.slug}`}>
                             {post.title}
                         </Link>
                     </li>

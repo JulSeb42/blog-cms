@@ -133,3 +133,24 @@ export const List = styled.ul`
         }
     }
 `
+
+export const ListLinks = styled(List)`
+    li {
+        transition: ${Variables.Transitions.Short};
+
+        &:hover {
+            transform: translateX(${Variables.Margins.XS});
+
+            a {
+                color: ${Variables.Colors.Primary70};
+            }
+        }
+
+        a {
+            color: ${Variables.Colors.Primary};
+            text-decoration: none;
+            font-weight: ${Variables.FontWeights.Bold};
+            transition: ${Variables.Transitions.Short};
+        }
+    }
+`

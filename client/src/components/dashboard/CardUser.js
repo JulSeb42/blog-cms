@@ -38,7 +38,8 @@ const IconsContainer = styled.div`
     display: flex;
     align-items: center;
 
-    a:first-child {
+    a:first-child,
+    & > div {
         margin-right: ${Variables.Margins.XXS};
     }
 `

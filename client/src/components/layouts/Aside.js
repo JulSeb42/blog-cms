@@ -23,35 +23,14 @@ const Item = styled.div`
     gap: ${Variables.Margins.S};
 `
 
-const List = styled(Font.List)`
-    li {
-        transition: ${Variables.Transitions.Short};
-
-        &:hover {
-            transform: translateX(${Variables.Margins.XS});
-
-            a {
-                color: ${Variables.Colors.Primary70};
-            }
-        }
-
-        a {
-            color: ${Variables.Colors.Primary};
-            text-decoration: none;
-            font-weight: ${Variables.FontWeights.Bold};
-            transition: ${Variables.Transitions.Short};
-        }
-    }
-`
-
-function Aside() {
+function Aside(props) {
     const [allPosts, setAllPosts] = useState([])
     const [allAuthors, setAllAuthors] = useState([])
 
     useEffect(() => {
         axios
             .get("/posts/posts")
-            .then(res => setAllPosts(res.data))
+            .then(res => setAllPosts(res.data).slice(0, 5))
             .catch(err => console.log(err))
 
         axios
@@ -60,54 +39,84 @@ function Aside() {
             .catch(err => console.log(err))
     }, [])
 
-    const featuredAuthors = allAuthors.filter(
-        author => author.featured === true
-    )
+    const featuredAuthors = allAuthors.filter(author => author.featured === true)
 
-    let categories = allPosts.map(post => post.category)
-    let uniqCategories = [...new Set(categories)].slice(0, 5)
+    let sortedPosts = allPosts.sort((a, b) => {
+        if (a.date === b.date) {
+            return b.time.localeCompare(a.time)
+        }
+        return new Date(b.date) - new Date(a.date)
+    }).slice(0, 5)
 
     return (
         <Container>
-            <Item>
-                <Font.H4>Authors</Font.H4>
+            {!props.noposts && allPosts.length > 0 && (
+                <Item>
+                    <Font.H4>Latest posts</Font.H4>
 
-                <List>
-                    {featuredAuthors.map(author => (
-                        <li key={author._id}>
-                            <Link
-                                to={`/authors/${author.fullName
-                                    .toLowerCase()
-                                    .replaceAll(" ", "-")}`}
-                            >
-                                {author.fullName}
+                    <Font.ListLinks>
+                        {sortedPosts.map(post => (
+                            <li key={post._id}>
+                                <Link
+                                    to={`/posts/${post.category
+                                        .toLowerCase()
+                                        .replaceAll(" ", "-")}/${post.slug}`}
+                                >
+                                    {post.title}
+                                </Link>
+                            </li>
+                        ))}
+
+                        <li><Link to="/posts">All posts</Link></li>
+                    </Font.ListLinks>
+                </Item>
+            )}
+
+            {!props.noauthors && (
+                <Item>
+                    <Font.H4>Authors</Font.H4>
+
+                    <Font.ListLinks>
+                        {featuredAuthors.map(author => (
+                            <li key={author._id}>
+                                <Link
+                                    to={`/authors/${author.fullName
+                                        .toLowerCase()
+                                        .replaceAll(" ", "-")}`}
+                                >
+                                    {author.fullName}
+                                </Link>
+                            </li>
+                        ))}
+                        <li>
+                            <Link to="/authors">All authors</Link>
+                        </li>
+                    </Font.ListLinks>
+                </Item>
+            )}
+
+            {/* {!props.nocategories && (
+                <Item>
+                    <Font.H4>Categories</Font.H4>
+
+                    <Font.ListLinks>
+                        {uniqCategories.map((category, i) => (
+                            <li key={i}>
+                                <Link to={`/posts/${category}`}>
+                                    {category.charAt(0).toUpperCase() +
+                                        category.slice(1)}
+                                </Link>
+                            </li>
+                        ))}
+
+                        <li>
+                            <Link to="/posts/all-categories">
+                                All categories
                             </Link>
                         </li>
-                    ))}
-                    <li>
-                        <Link to="/authors">All authors</Link>
-                    </li>
-                </List>
-            </Item>
-
-            <Item>
-                <Font.H4>Categories</Font.H4>
-
-                <List>
-                    {uniqCategories.map((category, i) => (
-                        <li key={i}>
-                            <Link to={`/posts/${category}`}>
-                                {category.charAt(0).toUpperCase() +
-                                    category.slice(1)}
-                            </Link>
-                        </li>
-                    ))}
-
-                    <li>
-                        <Link to="/posts/all-categories">All categories</Link>
-                    </li>
-                </List>
-            </Item>
+                    </Font.ListLinks>
+                </Item>
+            )} */}
         </Container>
     )
 }

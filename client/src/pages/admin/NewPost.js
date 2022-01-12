@@ -184,7 +184,7 @@ function NewPost({ edited, setEdited }) {
                 <TextPost label="Body" value={body} onChange={setBody} />
 
                 <Toggle
-                    label="Feature this article"
+                    label="Feature this post"
                     id="featured"
                     onChange={handleFeatured}
                     defaultChecked={featured}

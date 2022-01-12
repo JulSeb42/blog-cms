@@ -8,6 +8,7 @@ import Header from "./Header"
 import { Container, Content } from "./Container"
 import Aside from "./Aside"
 import Footer from "./Footer"
+import Breadcrumbs from "./Breadcrumbs"
 
 function Page(props) {
     const location = useLocation().pathname
@@ -33,9 +34,18 @@ function Page(props) {
                     padding={props.padding}
                     header={props.header}
                 >
-                    <Content>{props.children}</Content>
+                    <Content>
+                        {props.breadcrumbs && <Breadcrumbs items={props.breadcrumbs} />}
+                        
+                        {props.children}
+                    </Content>
 
-                    {!props.noaside && <Aside />}
+                    {!props.noaside && (
+                        <Aside
+                            noauthors={props.noauthors}
+                            noposts={props.noposts}
+                        />
+                    )}
                 </Container>
             ) : (
                 props.children

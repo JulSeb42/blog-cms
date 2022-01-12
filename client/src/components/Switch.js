@@ -34,7 +34,6 @@ import Users from "../pages/admin/Users"
 // Posts
 import PostsList from "../pages/posts/PostsList"
 import PostDetail from "../pages/posts/PostDetail"
-import CategoriesList from "../pages/categories/CategoriesList"
 import CategoryDetail from "../pages/categories/CategoryDetail"
 import AuthorList from "../pages/authors/AuthorList"
 import AuthorDetail from "../pages/authors/AuthorDetail"
@@ -226,11 +225,6 @@ function Switch() {
                     key={post._id}
                 />
             ))}
-            <Route
-                path="/posts/all-categories"
-                element={<CategoriesList />}
-                preload={scrollToTop()}
-            />
             {uniqCategories.map((category, i) => (
                 <Route
                     path={`/posts/${category}`}

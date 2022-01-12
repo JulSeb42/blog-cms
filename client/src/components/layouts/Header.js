@@ -90,7 +90,7 @@ function Header(props) {
             <Nav>
                 <NavLinkStyled to="/">Home</NavLinkStyled>
 
-                <NavLinkStyled to="/posts">Articles</NavLinkStyled>
+                <NavLinkStyled to="/posts">Posts</NavLinkStyled>
 
                 {isLoggedIn && (
                     <NavLinkStyled to="/dashboard">Dashboard</NavLinkStyled>

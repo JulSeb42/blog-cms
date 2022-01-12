@@ -53,10 +53,12 @@ function Home() {
                         ))}
                     </ListPosts>
 
-                    <Button to="/posts" btnstyle="primary">All articles</Button>
+                    <Button to="/posts" btnstyle="primary">
+                        All posts
+                    </Button>
                 </Content>
 
-                <Aside />
+                <Aside noposts />
             </Container>
         </Page>
     )
