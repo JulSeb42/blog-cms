@@ -1,6 +1,6 @@
 // Packages
 import React from "react"
-import { Link } from "react-router-dom"
+import Link from "../utils/LinkScroll"
 import styled, { css } from "styled-components"
 
 // Components

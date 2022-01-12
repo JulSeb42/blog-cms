@@ -31,4 +31,5 @@ export const Content = styled.main`
     grid-template-columns: 1fr;
     gap: ${Variables.Margins.L};
     margin-bottom: ${Variables.Margins.XXL};
+    align-content: start;
 `

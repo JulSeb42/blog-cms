@@ -1,12 +1,13 @@
 // Packages
 import React, { useState, useEffect } from "react"
 import axios from "axios"
-import { Link } from "react-router-dom"
+import Link from "../../components/utils/LinkScroll"
 
 // Components
+import * as Font from "../../components/styles/Font"
 import Page from "../../components/layouts/Page"
 
-function PostsList(props) {
+function PostsList() {
     const [allPosts, setAllPosts] = useState([])
 
     useEffect(() => {
@@ -19,8 +20,8 @@ function PostsList(props) {
     console.log(allPosts)
 
     return (
-        <Page title="All articles">
-            <h1>All articles</h1>
+        <Page title="All articles" headerbackground padding header>
+            <Font.H1>All articles</Font.H1>
 
             <ul>
                 {allPosts.map(post => (

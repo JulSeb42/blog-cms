@@ -1,6 +1,6 @@
 // Packages
 import React, { useContext, useState } from "react"
-import { Link } from "react-router-dom"
+import Link from "../../components/utils/LinkScroll"
 import axios from "axios"
 
 // Components

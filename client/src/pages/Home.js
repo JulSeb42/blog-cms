@@ -37,7 +37,7 @@ function Home() {
     let featuredPosts = sortedPosts.filter(post => post.featured === true)
 
     return (
-        <Page title="Home">
+        <Page title="Home" nocontainer>
             <Cover src={GlobalData().cover} alt={`Cover ${GlobalData().name}`}>
                 <Font.H1>{GlobalData().name}</Font.H1>
                 <Font.H2>{GlobalData().baseline}</Font.H2>
