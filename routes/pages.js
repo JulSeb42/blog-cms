@@ -15,6 +15,13 @@ router.get("/page/:id", (req, res, next) => {
         .catch(err => next(err))
 })
 
+// Get page by slug
+router.get("/page-slug/:slug", (req, res, next) => {
+    Page.findOne({ slug: req.params.slug })
+        .then(foundPage => res.status(200).json(foundPage))
+        .catch(err => next(err))
+})
+
 // Create page
 router.put("/new-page", (req, res, next) => {
     const { title, body, slug, metaDescription, keywords, draft } = req.body

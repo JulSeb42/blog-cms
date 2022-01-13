@@ -1,5 +1,6 @@
 const router = require("express").Router()
 const Global = require("../models/Global.model")
+let transporter = require("../utils/transporter")
 
 const globalId = "61ddbd1b06de66e386e32a88"
 
@@ -38,6 +39,27 @@ router.put("/edit", (req, res, next) => {
     })
         .then(updatedGlobal => res.status(200).json({ global: updatedGlobal }))
         .catch(err => next(err))
+})
+
+router.put("/contact", (req, res, next) => {
+    const { name, email, subject, body } = req.body
+
+    let mailDetails = {
+        from: process.env.EMAIL,
+        to: "julien.sebag@me.com",
+        subject: "New message on Blog CMS",
+        html: `<p>Hello,</p><p>You just received a new email from ${name} (<a href="mailto:${email}">${email}</a>).</p><p><strong>Subject: </strong>${subject}</p><p><strong>Message: </strong>${body}</p>`,
+    }
+
+    transporter.sendMail(mailDetails, (err, data) => {
+        if (err) {
+            console.log(err)
+        } else {
+            console.log("Email sent successfully.")
+        }
+    })
+
+    res.status(200).json(mailDetails)
 })
 
 module.exports = router

@@ -7,7 +7,8 @@ import axios from "axios"
 import Home from "../pages/Home"
 import NotFound from "../pages/NotFound"
 import GlobalPage from "../pages/GlobalPage"
-import Contact from "../pages/Contact"
+import Contact from "../pages/contact/Contact"
+import ThankYouEmail from "../pages/contact/ThankYou"
 
 // Auth
 import Signup from "../pages/auth/Signup"
@@ -88,6 +89,12 @@ function Switch() {
             <Route
                 path="/contact"
                 element={<Contact />}
+                preload={scrollToTop()}
+            />
+
+            <Route
+                path="/thank-you"
+                element={<ThankYouEmail />}
                 preload={scrollToTop()}
             />
 
