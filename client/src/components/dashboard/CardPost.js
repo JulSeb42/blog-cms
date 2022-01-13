@@ -6,7 +6,7 @@ import Link from "../utils/LinkScroll"
 // Components
 import * as Font from "../styles/Font"
 import * as Variables from "../styles/Variables"
-import Icon from "../ui/Icon"
+import ButtonIcon, { IconsContainer } from "../ui/ButtonIcon"
 
 // Utils
 import convertDate from "../utils/convertDate"
@@ -29,32 +29,6 @@ const TextContainer = styled.div`
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-    }
-`
-
-const IconsContainer = styled.div`
-    display: flex;
-    align-items: center;
-
-    a:first-child {
-        margin-right: ${Variables.Margins.XXS};
-    }
-`
-
-const IconButton = styled(Link)`
-    --size: 32px;
-    width: var(--size);
-    height: var(--size);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    color: ${Variables.Colors.Primary};
-    transition: ${Variables.Transitions.Short};
-
-    &:hover {
-        background-color: ${Variables.Colors.LightGray};
-        color: ${Variables.Colors.Primary70};
     }
 `
 
@@ -92,7 +66,8 @@ function CardPost({ post, ...props }) {
             </TextContainer>
 
             <IconsContainer>
-                <IconButton
+                <ButtonIcon
+                    icon="file"
                     to={
                         props.globalPages
                             ? `/${post.slug}`
@@ -101,20 +76,17 @@ function CardPost({ post, ...props }) {
                     aria-label="Read post"
                     target="_blank"
                     rel="noreferrer noopener"
-                >
-                    <Icon name="file" size={24} color="currentColor" />
-                </IconButton>
+                />
 
-                <IconButton
+                <ButtonIcon
                     to={
                         props.globalPages
                             ? `/dashboard/pages/${post._id}`
                             : `/dashboard/posts/${post._id}`
                     }
                     aria-label="Edit post"
-                >
-                    <Icon name="edit" size={24} color="currentColor" />
-                </IconButton>
+                    icon="edit"
+                />
             </IconsContainer>
         </Container>
     )

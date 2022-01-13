@@ -86,6 +86,17 @@ router.put("/feature/:id", (req, res, next) => {
         .catch(err => next(err))
 })
 
+// Change user role
+router.put("/role/:id", (req, res, next) => {
+    const { role } = req.body
+
+    User.findByIdAndUpdate(req.params.id, { role }, { new: true })
+        .then(() => {
+            res.status(200).json({ message: "Role edited" })
+        })
+        .catch(err => next(err))
+})
+
 // Delete account
 router.delete("/delete-user/:id", (req, res, next) => {
     const id = req.params.id

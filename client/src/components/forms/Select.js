@@ -1,6 +1,6 @@
 // Packages
 import React from "react"
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 
 // Components
 import * as Variables from "../styles/Variables"
@@ -23,6 +23,18 @@ const Container = styled.div`
         top: calc(50% - 12px / 2);
         right: ${Variables.Margins.XS};
     }
+
+    ${props =>
+        props.disabled &&
+        css`
+            &:after {
+                ${IconMixin({
+                    icon: "chevron-down",
+                    size: 12,
+                    color: Variables.Colors.DarkGray,
+                })}
+            }
+        `}
 `
 
 const Input = styled.select`
@@ -44,13 +56,23 @@ const Input = styled.select`
     &:focus {
         border-color: ${Variables.Colors.Primary};
     }
+
+    &:disabled {
+        cursor: not-allowed;
+        color: ${Variables.Colors.DarkGray};
+    }
 `
 
 function Select(props) {
     return (
         <InputContainer label={props.label} id={props.id}>
             <Container {...props}>
-                <Input>{props.children}</Input>
+                <Input
+                    disabled={props.disabled}
+                    defaultValue={props.defaultValue}
+                >
+                    {props.children}
+                </Input>
             </Container>
         </InputContainer>
     )

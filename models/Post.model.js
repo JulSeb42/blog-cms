@@ -24,12 +24,12 @@ const postSchema = new Schema(
         body: String,
         metaDescription: String,
         featured: Boolean,
-        // comments: [
-        //     {
-        //         type: Schema.Types.ObjectId,
-        //         ref: "Comment",
-        //     },
-        // ],
+        comments: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: "Comment",
+            },
+        ],
         imageUrl: String,
     },
     {

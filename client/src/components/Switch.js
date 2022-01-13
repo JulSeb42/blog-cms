@@ -31,6 +31,7 @@ import Users from "../pages/admin/Users"
 import PagesDashboard from "../pages/admin/PagesDashboard"
 import AddPage from "../pages/admin/AddPage"
 import EditPage from "../pages/admin/EditPage"
+import Comments from "../pages/admin/Comments"
 
 // Posts
 import PostsList from "../pages/posts/PostsList"
@@ -256,13 +257,19 @@ function Switch() {
                     key={page._id}
                 />
             ))}
-
-            {/* Posts */}
-            <Route path="/posts" element={<Navigate to="/posts/1" />} />
+            <Route
+                path="/dashboard/comments"
+                element={
+                    <ProtectedRoutes redirectTo="/login">
+                        <Comments />
+                    </ProtectedRoutes>
+                }
+                preload={scrollToTop()}
+            />
 
             <Route
-                exact
-                path="/posts/:page"
+                // exact
+                path="/posts"
                 element={<PostsList page={page} setPage={setPage} />}
                 preload={scrollToTop()}
             />

@@ -39,7 +39,13 @@ function Form(props) {
                     )}
 
                     {props.btnreset && (
-                        <Button type="reset">{props.btnreset}</Button>
+                        <Button
+                            type="reset"
+                            btnstyle="secondary"
+                            onClick={props.onClickReset}
+                        >
+                            {props.btnreset}
+                        </Button>
                     )}
                 </ButtonsContainer>
             )}

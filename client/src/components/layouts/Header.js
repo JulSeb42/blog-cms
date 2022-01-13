@@ -76,7 +76,7 @@ const Links = [
     },
     {
         title: "Posts",
-        url: "/posts/1",
+        url: "/posts",
     },
     {
         title: "About",

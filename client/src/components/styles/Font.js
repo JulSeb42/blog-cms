@@ -82,7 +82,7 @@ export const P = styled.p`
     }
 
     ${props =>
-        props.bio &&
+        props.pre &&
         css`
             white-space: pre-line;
         `}
@@ -108,6 +108,17 @@ export const Label = styled.label`
 
     strong {
         font-weight: ${Variables.FontWeights.Bold};
+    }
+
+    a {
+        color: ${Variables.Colors.Primary};
+        font-weight: ${Variables.FontWeights.Bold};
+        text-decoration: none;
+        transition: ${Variables.Transitions.Short};
+
+        &:hover {
+            color: ${Variables.Colors.Primary70};
+        }
     }
 `
 

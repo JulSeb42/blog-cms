@@ -98,7 +98,7 @@ function Users() {
 
             <ListPosts>
                 {results.map(user => (
-                    <CardUser key={user._id} user={user} />
+                    <CardUser key={user._id} userCard={user} />
                 ))}
             </ListPosts>
         </Wrapper>

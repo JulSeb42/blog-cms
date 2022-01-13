@@ -88,6 +88,14 @@ const Links = [
     },
 ]
 
+const LinksModerator = [
+    {
+        title: "Comments",
+        url: "/dashboard/comments",
+        icon: "bubble",
+    },
+]
+
 const LinksAdmin = [
     {
         title: "Pages",
@@ -128,6 +136,8 @@ function Nav() {
     const { user, logoutUser } = useContext(AuthContext)
     const location = useLocation().pathname
 
+    const conditionComment = user.role === "admin" || user.role === "moderator"
+
     return (
         <Container>
             <Title>
@@ -149,6 +159,16 @@ function Nav() {
                         key={i}
                     />
                 ))}
+
+                {conditionComment &&
+                    LinksModerator.map((link, i) => (
+                        <ButtonNav
+                            url={link.url}
+                            icon={link.icon}
+                            title={link.title}
+                            key={i}
+                        />
+                    ))}
 
                 {user.role === "admin" &&
                     LinksAdmin.map((link, i) => (

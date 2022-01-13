@@ -9,7 +9,7 @@ const User = require("../models/User.model")
 router.get("/posts", (req, res, next) => {
     Post.find()
         .populate("author")
-        // .populate("comments")
+        .populate("comments")
         .then(postsFromDb => res.status(200).json(postsFromDb))
         .catch(err => next(err))
 })
@@ -18,7 +18,7 @@ router.get("/posts", (req, res, next) => {
 router.get("/post/:id", (req, res, next) => {
     Post.findById(req.params.id)
         .populate("author")
-        // .populate("comments")
+        .populate("comments")
         .then(postFromDb => res.status(200).json(postFromDb))
         .catch(err => next(err))
 })
