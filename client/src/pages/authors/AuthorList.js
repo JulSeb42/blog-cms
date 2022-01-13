@@ -38,7 +38,7 @@ function AuthorList() {
         >
             <Font.H1>All authors</Font.H1>
 
-            <ListPosts cols={3}>
+            <ListPosts cols={3} colsMobile={2}>
                 {allAuthors.map(author => (
                     <UserCardSmall author={author} key={author._id} />
                 ))}

@@ -20,6 +20,10 @@ const Row = styled.div`
     display: grid;
     grid-template-columns: ${props => `repeat(${props.col}, 1fr)`};
     gap: ${Variables.Margins.L};
+
+    @media ${Variables.Breakpoints.Mobile} {
+        grid-template-columns: repeat(1, 1fr);
+    }
 `
 
 const Card = styled(Link)`
@@ -29,6 +33,7 @@ const Card = styled(Link)`
     text-decoration: none;
     overflow: hidden;
     border-radius: ${Variables.Radiuses.M};
+    min-height: 200px;
 
     &:after {
         content: "";

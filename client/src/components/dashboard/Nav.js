@@ -1,5 +1,5 @@
 // Packages
-import React, { useContext } from "react"
+import React, { useContext, useState } from "react"
 import styled, { css } from "styled-components"
 import { NavLink, Link as NormalLink, useLocation } from "react-router-dom"
 
@@ -8,6 +8,7 @@ import * as Variables from "../styles/Variables"
 import * as Font from "../styles/Font"
 import { AuthContext } from "../../context/auth"
 import Icon from "../ui/Icon"
+import Burger from "../ui/Burger"
 
 // Data
 import GlobalData from "../data/GlobalData"
@@ -23,6 +24,7 @@ const Container = styled.nav`
     padding: ${Variables.Margins.XXL};
     display: flex;
     flex-direction: column;
+    z-index: 999;
 
     a,
     button {
@@ -35,10 +37,25 @@ const Container = styled.nav`
             color: ${Variables.Colors.Secondary70};
         }
     }
+
+    @media ${Variables.Breakpoints.Tablet} {
+        width: calc(${Variables.Margins.XXL} * 2 + 30px);
+        transition: ${Variables.Transitions.Long};
+
+        &.open {
+            width: 300px;
+        }
+    }
 `
 
 const Title = styled(Font.H4)`
     margin-bottom: ${Variables.Margins.L};
+
+    @media ${Variables.Breakpoints.Tablet} {
+        margin-top: calc(20px + ${Variables.Margins.L});
+        width: 0;
+        overflow: hidden;
+    }
 `
 
 const List = styled.div`
@@ -52,6 +69,19 @@ const List = styled.div`
         css`
             flex-grow: 1;
         `}
+
+    @media ${Variables.Breakpoints.Tablet} {
+        .text {
+            white-space: nowrap;
+            overflow: hidden;
+            max-width: 0;
+            transition: ${Variables.Transitions.Short};
+
+            &.open {
+                max-width: 300px;
+            }
+        }
+    }
 `
 
 const Link = styled(NavLink)`
@@ -122,24 +152,33 @@ const LinksBottom = [
     },
 ]
 
-// Components
-const ButtonNav = props => {
-    return (
-        <Link to={props.url} as={props.as} {...props}>
-            <Icon name={props.icon} size={16} color="currentColor" />
-            {props.title}
-        </Link>
-    )
-}
-
 function Nav() {
     const { user, logoutUser } = useContext(AuthContext)
     const location = useLocation().pathname
 
     const conditionComment = user.role === "admin" || user.role === "moderator"
 
+    const [isOpen, setIsOpen] = useState(false)
+    const open = isOpen ? "open" : ""
+
+    // Components
+    const ButtonNav = props => {
+        return (
+            <Link to={props.url} as={props.as} {...props}>
+                <Icon name={props.icon} size={24} color="currentColor" />
+                <span className={`text ${open}`}>{props.title}</span>
+            </Link>
+        )
+    }
+
     return (
-        <Container>
+        <Container className={open}>
+            <Burger
+                dashboard
+                className={open}
+                onClick={() => setIsOpen(!isOpen)}
+            />
+
             <Title>
                 <NavLink to="/dashboard">{GlobalData().name}</NavLink>
             </Title>
@@ -192,8 +231,8 @@ function Nav() {
                 ))}
 
                 <Link as="button" onClick={logoutUser}>
-                    <Icon name="quit" size={16} color="currentColor" />
-                    Log out
+                    <Icon name="quit" size={24} color="currentColor" />
+                    <span className={`text ${open}`}>Log out</span>
                 </Link>
             </List>
         </Container>

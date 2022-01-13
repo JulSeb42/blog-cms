@@ -23,6 +23,16 @@ export const Container = styled.div`
         css`
             margin-top: 72px;
         `}
+    
+    @media ${Variables.Breakpoints.Tablet} {
+        grid-template-columns: 5vw 1fr 5vw;
+        gap: ${Variables.Margins.L};
+        margin-bottom: ${Variables.Margins.XXL};
+
+        & > * {
+            grid-column: 2 !important;
+        }
+    }
 `
 
 export const Content = styled.main`
@@ -32,6 +42,10 @@ export const Content = styled.main`
     gap: ${Variables.Margins.L};
     margin-bottom: ${Variables.Margins.XXL};
     align-content: start;
+
+    @media ${Variables.Breakpoints.Tablet} {
+        margin-bottom: 0;
+    }
 `
 
 export const Article = styled.article`

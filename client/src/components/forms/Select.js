@@ -16,7 +16,7 @@ const Container = styled.div`
         ${IconMixin({
             icon: "chevron-down",
             size: 12,
-            color: Variables.Colors.Secondary,
+            color: Variables.Colors.Primary,
         })}
         position: absolute;
         z-index: 1;

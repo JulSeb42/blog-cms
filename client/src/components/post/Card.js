@@ -29,6 +29,7 @@ const ImgContainer = styled.div`
     border-radius: ${Variables.Radiuses.M};
     width: 100%;
     height: 10vw;
+    min-height: 150px;
     overflow: hidden;
 `
 

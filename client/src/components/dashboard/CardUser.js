@@ -26,6 +26,8 @@ const Container = styled.div`
         border-radius: ${Variables.Radiuses.M};
         padding: ${Variables.Margins.M};
     }
+
+    
 `
 
 const Content = styled.div`
@@ -34,6 +36,16 @@ const Content = styled.div`
 
     strong {
         flex-grow: 1;
+    }
+
+    @media ${Variables.Breakpoints.Mobile} {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        strong {
+            margin-bottom: ${Variables.Margins.XS};
+        }
     }
 `
 

@@ -6,6 +6,7 @@ import styled, { css } from "styled-components"
 // Components
 import { AuthContext } from "../../context/auth"
 import * as Variables from "../styles/Variables"
+import Burger from "../ui/Burger"
 
 // Data
 import GlobalData from "../data/GlobalData"
@@ -18,7 +19,7 @@ const Container = styled.header`
     left: 0;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     padding: ${Variables.Margins.L} 5vw;
     z-index: 999;
     transition: ${Variables.Transitions.Short};
@@ -51,6 +52,7 @@ const Container = styled.header`
 
 const Logo = styled(Link)`
     font-weight: ${Variables.FontWeights.Bold} !important;
+    flex-grow: 1;
 `
 
 const Nav = styled.nav`
@@ -59,6 +61,28 @@ const Nav = styled.nav`
 
     a:not(:last-child) {
         margin-right: ${Variables.Margins.M};
+    }
+
+    @media ${Variables.Breakpoints.Mobile} {
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100vw;
+        height: 100vh;
+        background-color: ${Variables.Colors.Primary};
+        z-index: 998;
+        transition: ${Variables.Transitions.Long};
+        flex-direction: column;
+        justify-content: center;
+
+        a:not(:last-child) {
+            margin-right: 0;
+            margin-bottom: ${Variables.Margins.M};
+        }
+
+        &.open {
+            left: 0;
+        }
     }
 `
 
@@ -103,13 +127,20 @@ function Header(props) {
         })
     })
 
+    const [isOpen, setIsOpen] = useState(false)
+    const open = isOpen ? "open" : ""
+
     return (
         <Container top={topPosition} {...props}>
             <Logo to="/">{GlobalData().name}</Logo>
 
-            <Nav>
+            <Burger className={open} onClick={() => setIsOpen(!isOpen)} />
+
+            <Nav className={open}>
                 {Links.map((link, i) => (
-                    <NavLinkStyled to={link.url} key={i}>{link.title}</NavLinkStyled>
+                    <NavLinkStyled to={link.url} key={i}>
+                        {link.title}
+                    </NavLinkStyled>
                 ))}
 
                 {isLoggedIn && (

@@ -23,10 +23,22 @@ const Container = styled.main`
         grid-column: ${Variables.Container.Column};
     }
 
+    @media ${Variables.Breakpoints.Tablet} {
+        grid-template-columns: ${Variables.Container.TemplateTablet};
+    }
+
     ${props =>
         !props.full &&
         css`
             margin-left: 300px;
+
+            @media ${Variables.Breakpoints.Tablet} {
+                margin-left: 126px;
+            }
+
+            @media ${Variables.Breakpoints.Mobile} {
+                grid-template-columns: ${Variables.Container.TemplateTablet};
+            }
         `}
 `
 

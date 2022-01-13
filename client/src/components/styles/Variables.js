@@ -90,9 +90,10 @@ export const Transitions = {
 // Media queries
 const DevicesSizes = {
     Mobile: "600px",
-    Tablet: "768px",
+    Tablet: "900px",
 }
 
 export const Breakpoints = {
-    MobileL: `(max-width: ${DevicesSizes.MobileL})`,
+    Tablet: `(max-width: ${DevicesSizes.Tablet})`,
+    Mobile: `(max-width: ${DevicesSizes.Mobile})`,
 }
