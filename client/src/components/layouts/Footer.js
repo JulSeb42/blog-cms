@@ -10,7 +10,7 @@ import * as Font from "../styles/Font"
 // Styles
 const Container = styled.footer`
     width: 100%;
-    background-color: ${Variables.Colors.DarkGray};
+    background-color: ${Variables.Colors.Primary};
     color: ${Variables.Colors.White};
     padding: ${Variables.Margins.L} 5vw;
     display: flex;

@@ -20,7 +20,7 @@ const Container = styled.div`
         top: 0;
         left: 0;
         z-index: 1;
-        background: ${Variables.Colors.OverlayWhite};
+        background: ${Variables.Colors.Overlay};
     }
 `
 
@@ -44,6 +44,7 @@ const Content = styled.div`
     align-items: flex-start;
     justify-content: flex-end;
     flex-direction: column;
+    color: ${Variables.Colors.White};
 
     h1 {
         margin-bottom: ${Variables.Margins.S};

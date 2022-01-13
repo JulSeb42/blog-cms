@@ -1,8 +1,11 @@
 // Colors
 export const Colors = {
-    Primary: "#161F6D",
-    Primary70: "#2F40D5",
-    Primary10: "#EAECFB",
+    // Primary: "#161F6D",
+    // Primary70: "#2F40D5",
+    // Primary10: "#EAECFB",
+    Primary: "#333333",
+    Primary70: "#737373",
+    Primary10: "#F2F2F2",
     Secondary: "#00ABE1",
     Secondary70: "#61D9FF",
     Secondary10: "#E5F9FF",

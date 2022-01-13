@@ -24,13 +24,13 @@ const Container = styled.header`
     transition: ${Variables.Transitions.Short};
 
     a {
-        color: ${Variables.Colors.Primary};
+        color: ${Variables.Colors.White};
         font-weight: ${Variables.FontWeights.Regular};
         text-decoration: none;
         transition: ${Variables.Transitions.Short};
 
         &:hover {
-            color: ${Variables.Colors.Primary70};
+            color: ${Variables.Colors.Secondary70};
         }
     }
 

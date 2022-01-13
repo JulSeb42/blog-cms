@@ -19,7 +19,7 @@ const Container = styled.nav`
     top: 0;
     width: 300px;
     height: 100vh;
-    background-color: ${Variables.Colors.DarkGray};
+    background-color: ${Variables.Colors.Primary};
     padding: ${Variables.Margins.XXL};
     display: flex;
     flex-direction: column;
