@@ -42,11 +42,11 @@ router.put("/edit", (req, res, next) => {
 })
 
 router.put("/contact", (req, res, next) => {
-    const { name, email, subject, body } = req.body
+    const { receiver, name, email, subject, body } = req.body
 
     let mailDetails = {
         from: process.env.EMAIL,
-        to: "julien.sebag@me.com",
+        to: receiver,
         subject: "New message on Blog CMS",
         html: `<p>Hello,</p><p>You just received a new email from ${name} (<a href="mailto:${email}">${email}</a>).</p><p><strong>Subject: </strong>${subject}</p><p><strong>Message: </strong>${body}</p>`,
     }

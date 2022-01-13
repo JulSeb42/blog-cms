@@ -9,6 +9,9 @@ import Page from "../../components/layouts/Page"
 import Form from "../../components/forms/Form"
 import Input from "../../components/forms/Input"
 
+// Data
+import GlobalData from "../../components/data/GlobalData"
+
 function Contact() {
     const navigate = useNavigate()
 
@@ -35,10 +38,12 @@ function Contact() {
     const handleSubject = e => setSubject(e.target.value)
     const handleBody = e => setBody(e.target.value)
 
+    const receiver = GlobalData().email
+
     const handleSubmit = e => {
         e.preventDefault()
 
-        const requestBody = { name, email, subject, body }
+        const requestBody = { receiver, name, email, subject, body }
 
         axios
             .put("/global/contact", requestBody)
