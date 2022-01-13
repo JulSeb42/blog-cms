@@ -17,12 +17,14 @@ const BreadcrumbsLinks = [
 
 function AuthorList() {
     const [allAuthors, setAllAuthors] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         axios
             .get("/users/user")
             .then(res => {
                 setAllAuthors(res.data)
+                setIsLoading(false)
             })
             .catch(err => console.log(err))
     }, [])
@@ -35,6 +37,7 @@ function AuthorList() {
             header
             noauthors
             breadcrumbs={BreadcrumbsLinks}
+            isLoading={isLoading}
         >
             <Font.H1>All authors</Font.H1>
 

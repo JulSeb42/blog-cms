@@ -3,35 +3,37 @@ const mongoose = require("mongoose")
 mongoose.connect(process.env.MONGODB_URI)
 
 // Generate users
-const User = require("../models/User.model")
+const User = require("../../models/User.model")
 
 // Julien
-const idJulien = "61ddcbee109f9908bd2781fc"
-const postsJulien = [
-    "61ddcc3b40e2c0fadd4c09f2",
-    "61ddcc3b40e2c0fadd4c09df",
-    "61ddcc3b40e2c0fadd4c09ef",
+const idAdmin = "61e0a1f50b56e3317ee7c4ed"
+const postsAdmin = [
+    "61e0a3c4d4c3b94774e625b7",
+    "61e0a3c4d4c3b94774e625b4",
+    "61e0a3c4d4c3b94774e625b2",
+    "61e0a3c4d4c3b94774e625ba",
+    "61e0a3c4d4c3b94774e625bc",
+    "61e0a3c4d4c3b94774e625c1",
 ]
 
 User.findOneAndUpdate(
-    { _id: idJulien },
-    { $push: { posts: postsJulien } },
+    { _id: idAdmin },
+    { $push: { posts: postsAdmin } },
     {
         new: true,
     }
 )
     .then(posts => {
-        console.log(`Success, ${posts.length} were pushed to Julien`)
+        console.log(posts)
     })
     .catch(err => console.log(err))
 
 // Dirk
-const idDirk = "61ddcbee109f9908bd2781fd"
+const idDirk = "61e0a1f50b56e3317ee7c4ee"
 const postsDirk = [
-    "61ddcc3b40e2c0fadd4c09e3",
-    "61ddcc3b40e2c0fadd4c09f1",
-    "61ddcc3b40e2c0fadd4c09ea",
-    "61ddcc3b40e2c0fadd4c09f8",
+    "61e0a3c4d4c3b94774e625c6",
+    "61e0a3c4d4c3b94774e625b5",
+    "61e0a3c4d4c3b94774e625af",
 ]
 
 User.findOneAndUpdate(
@@ -47,13 +49,13 @@ User.findOneAndUpdate(
     .catch(err => console.log(err))
 
 // Jan
-const idJan = "61ddcbee109f9908bd2781fe"
+const idJan = "61e0a1f50b56e3317ee7c4ef"
 const postsJan = [
-    "61ddcc3b40e2c0fadd4c09f6",
-    "61ddcc3b40e2c0fadd4c09e6",
-    "61ddcc3b40e2c0fadd4c09ec",
-    "61ddcc3b40e2c0fadd4c09e7",
-    "61ddcc3b40e2c0fadd4c09e2",
+    "61e0a3c4d4c3b94774e625b6",
+    "61e0a3c4d4c3b94774e625bd",
+    "61e0a3c4d4c3b94774e625b0",
+    "61e0a3c4d4c3b94774e625bb",
+    "61e0a3c4d4c3b94774e625ae",
 ]
 
 User.findOneAndUpdate(
@@ -69,13 +71,14 @@ User.findOneAndUpdate(
     .catch(err => console.log(err))
 
 // Katja
-const idKatja = "61ddcbee109f9908bd2781ff"
+const idKatja = "61e0a1f50b56e3317ee7c4f0"
 const postsKatja = [
-    "61ddcc3b40e2c0fadd4c09e9",
-    "61ddcc3b40e2c0fadd4c09f3",
-    "61ddcc3b40e2c0fadd4c09e4",
-    "61ddcc3b40e2c0fadd4c09e1",
-    "61ddcc3b40e2c0fadd4c09e5",
+    "61e0a3c4d4c3b94774e625c2",
+    "61e0a3c4d4c3b94774e625c3",
+    "61e0a3c4d4c3b94774e625c4",
+    "61e0a3c4d4c3b94774e625ad",
+    "61e0a3c4d4c3b94774e625c5",
+    "61e0a3c4d4c3b94774e625b8",
 ]
 
 User.findOneAndUpdate(
@@ -91,12 +94,11 @@ User.findOneAndUpdate(
     .catch(err => console.log(err))
 
 // Daniela
-const idDaniela = "61ddcbee109f9908bd278200"
+const idDaniela = "61e0a1f50b56e3317ee7c4f1"
 const postsDaniela = [
-    "61ddcc3b40e2c0fadd4c09e8",
-    "61ddcc3b40e2c0fadd4c09f4",
-    "61ddcc3b40e2c0fadd4c09eb",
-    "61ddcc3b40e2c0fadd4c09f0",
+    "61e0a3c4d4c3b94774e625c0",
+    "61e0a3c4d4c3b94774e625b3",
+    "61e0a3c4d4c3b94774e625bf",
 ]
 
 User.findOneAndUpdate(
@@ -112,13 +114,11 @@ User.findOneAndUpdate(
     .catch(err => console.log(err))
 
 // Jennifer
-const idJennifer = "61ddcbee109f9908bd278201"
+const idJennifer = "61e0a1f50b56e3317ee7c4f2"
 const postsJennifer = [
-    "61ddcc3b40e2c0fadd4c09ed",
-    "61ddcc3b40e2c0fadd4c09ee",
-    "61ddcc3b40e2c0fadd4c09f7",
-    "61ddcc3b40e2c0fadd4c09f5",
-    "61ddcc3b40e2c0fadd4c09e0",
+    "61e0a3c4d4c3b94774e625b1",
+    "61e0a3c4d4c3b94774e625be",
+    "61e0a3c4d4c3b94774e625b9",
 ]
 
 User.findOneAndUpdate(
@@ -131,7 +131,7 @@ User.findOneAndUpdate(
     .then(posts => {
         console.log(
             `Success, ${posts.length} were pushed to Jennifer, and overall ${
-                postsJulien.length +
+                postsAdmin.length +
                 postsDirk.length +
                 postsJan.length +
                 postsKatja.length +

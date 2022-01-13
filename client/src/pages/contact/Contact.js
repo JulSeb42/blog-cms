@@ -17,12 +17,14 @@ function Contact() {
 
     // Get data
     const [page, setPage] = useState({})
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         axios
             .get(`/pages/page-slug/contact`)
             .then(res => {
                 setPage(res.data)
+                setIsLoading(false)
             })
             .catch(err => console.log(err))
     }, [])
@@ -54,7 +56,14 @@ function Contact() {
     }
 
     return (
-        <Page title="Contact" noaside headerbackground header padding>
+        <Page
+            title="Contact"
+            noaside
+            headerbackground
+            header
+            padding
+            isLoading={isLoading}
+        >
             <Font.H1>{page.title}</Font.H1>
 
             <div dangerouslySetInnerHTML={{ __html: page.body }} />

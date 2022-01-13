@@ -24,6 +24,7 @@ function PostsList() {
     // Get data
     const [allPosts, setAllPosts] = useState([])
     const [pages, setPages] = useState(0)
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         axios
@@ -31,6 +32,7 @@ function PostsList() {
             .then(res => {
                 setAllPosts(res.data)
                 setPages(Math.round(res.data.length / dataLimit))
+                setIsLoading(false)
             })
             .catch(err => console.log(err))
     }, [])
@@ -102,6 +104,7 @@ function PostsList() {
             onChangeSearch={handleSearch}
             valueSearch={query}
             onChangeCategory={handleCategory}
+            isLoading={isLoading}
         >
             <Font.H1>All posts</Font.H1>
 

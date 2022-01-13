@@ -18,11 +18,15 @@ import GlobalData from "../components/data/GlobalData"
 
 function Home() {
     const [allPosts, setAllPosts] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         axios
             .get("/posts/posts")
-            .then(res => setAllPosts(res.data))
+            .then(res => {
+                setAllPosts(res.data)
+                setIsLoading(false)
+            })
             .catch(err => console.log(err))
     }, [])
 
@@ -37,7 +41,7 @@ function Home() {
     let featuredPosts = sortedPosts.filter(post => post.featured === true)
 
     return (
-        <Page title="Home" nocontainer>
+        <Page title="Home" nocontainer isLoading={isLoading}>
             <Cover src={GlobalData().cover} alt={`Cover ${GlobalData().name}`}>
                 <Font.H1>{GlobalData().name}</Font.H1>
                 <Font.H2>{GlobalData().baseline}</Font.H2>

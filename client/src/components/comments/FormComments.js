@@ -3,8 +3,6 @@ import React, { useState } from "react"
 import axios from "axios"
 
 // Components
-import * as Font from "../styles/Font"
-import * as Variables from "../styles/Variables"
 import Form from "../forms/Form"
 import Input from "../forms/Input"
 import Button from "../ui/Button"

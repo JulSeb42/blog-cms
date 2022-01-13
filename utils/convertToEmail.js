@@ -1,6 +1,5 @@
 const convertToEmail = str => {
-    const convertedStr = str.toLowerCase().split(" ").join("-")
-    return `${convertedStr}@email.com`
+    return `${str.toString().toLowerCase().replace(" ", "-")}@email.com`
 }
 
 module.exports = convertToEmail

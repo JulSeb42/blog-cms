@@ -1,6 +1,7 @@
 // Generate Posts
 require("dotenv/config")
 const mongoose = require("mongoose")
+
 mongoose.connect(process.env.MONGODB_URI)
 
 const Post = require("../models/Post.model")
@@ -64,12 +65,12 @@ const tags = [
 ]
 
 const authors = [
-    "61ddcbee109f9908bd2781fc",
-    "61ddcbee109f9908bd2781fd",
-    "61ddcbee109f9908bd2781fe",
-    "61ddcbee109f9908bd2781ff",
-    "61ddcbee109f9908bd278200",
-    "61ddcbee109f9908bd278201",
+    "61e0a1f50b56e3317ee7c4ed",
+    "61e0a1f50b56e3317ee7c4ee",
+    "61e0a1f50b56e3317ee7c4ef",
+    "61e0a1f50b56e3317ee7c4f0",
+    "61e0a1f50b56e3317ee7c4f1",
+    "61e0a1f50b56e3317ee7c4f2",
 ]
 
 const body =
@@ -109,17 +110,6 @@ const metaDescription =
 
 const tF = [true, false]
 
-// title
-// date
-// time
-// category
-// tags
-// slug
-// draft
-// author
-// body
-// imageUrl
-
 let fakePosts = []
 
 for (let i = 0; i < titles.length; i++) {
@@ -135,7 +125,7 @@ for (let i = 0; i < titles.length; i++) {
         body: body,
         imageUrl: covers[i],
         metaDescription,
-        featured: getRandom(tF)
+        featured: getRandom(tF),
     })
 }
 

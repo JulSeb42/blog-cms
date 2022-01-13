@@ -9,6 +9,7 @@ import { Container, Content } from "./Container"
 import Aside from "./Aside"
 import Footer from "./Footer"
 import Breadcrumbs from "./Breadcrumbs"
+import PageLoading from "../ui/PageLoading"
 
 function Page(props) {
     const location = useLocation().pathname
@@ -24,39 +25,45 @@ function Page(props) {
                 keywords={props.keywords}
             />
 
-            {!location.match(/^\/dashboard.*$/gim) && (
-                <Header background={props.headerbackground} />
-            )}
-
-            {conditionsContainer ? (
-                <Container
-                    noaside={props.noaside}
-                    padding={props.padding}
-                    header={props.header}
-                >
-                    <Content>
-                        {props.breadcrumbs && (
-                            <Breadcrumbs items={props.breadcrumbs} />
-                        )}
-
-                        {props.children}
-                    </Content>
-
-                    {!props.noaside && (
-                        <Aside
-                            noauthors={props.noauthors}
-                            noposts={props.noposts}
-                            onChangeSearch={props.onChangeSearch}
-                            valueSearch={props.valueSearch}
-                            onChangeCategory={props.onChangeCategory}
-                        />
-                    )}
-                </Container>
+            {props.isLoading ? (
+                <PageLoading />
             ) : (
-                props.children
-            )}
+                <>
+                    {!location.match(/^\/dashboard.*$/gim) && (
+                        <Header background={props.headerbackground} />
+                    )}
 
-            {!location.match(/^\/dashboard.*$/gim) && <Footer />}
+                    {conditionsContainer ? (
+                        <Container
+                            noaside={props.noaside}
+                            padding={props.padding}
+                            header={props.header}
+                        >
+                            <Content>
+                                {props.breadcrumbs && (
+                                    <Breadcrumbs items={props.breadcrumbs} />
+                                )}
+
+                                {props.children}
+                            </Content>
+
+                            {!props.noaside && (
+                                <Aside
+                                    noauthors={props.noauthors}
+                                    noposts={props.noposts}
+                                    onChangeSearch={props.onChangeSearch}
+                                    valueSearch={props.valueSearch}
+                                    onChangeCategory={props.onChangeCategory}
+                                />
+                            )}
+                        </Container>
+                    ) : (
+                        props.children
+                    )}
+
+                    {!location.match(/^\/dashboard.*$/gim) && <Footer />}
+                </>
+            )}
         </>
     )
 }

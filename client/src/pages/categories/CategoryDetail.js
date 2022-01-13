@@ -22,11 +22,15 @@ function CategoryDetail({ category }) {
 
     // Get posts
     const [allPosts, setAllPosts] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         axios
             .get("/posts/posts")
-            .then(res => setAllPosts(res.data))
+            .then(res => {
+                setAllPosts(res.data)
+                setIsLoading(false)
+            })
             .catch(err => console.log(err))
     }, [])
 
@@ -46,6 +50,7 @@ function CategoryDetail({ category }) {
             padding
             header
             breadcrumbs={BreadcrumbsLinks}
+            isLoading={isLoading}
         >
             <Font.H1>
                 {category.charAt(0).toUpperCase() + category.slice(1)}

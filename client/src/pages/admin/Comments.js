@@ -10,11 +10,6 @@ import Wrapper from "../../components/dashboard/Wrapper"
 import ListPosts from "../../components/dashboard/ListPosts"
 import CardComment from "../../components/dashboard/CardComment"
 
-import CardUser from "../../components/dashboard/CardUser"
-import FiltersContainer from "../../components/dashboard/FiltersContainer"
-import Input from "../../components/forms/Input"
-import Select from "../../components/forms/Select"
-
 function Comments() {
     const { user } = useContext(AuthContext)
 
