@@ -30,3 +30,12 @@ Log in to the admin panel at the address `/dashboard/login`. If you use the fake
 
 email: `admin@email.com`
 password: `Password42`
+
+## Features
+
+- Users can sign up and login, but can not access the dashboard before an admin approves them
+- User roles: users can either be a writer (who can only add, edit or delete posts), a moderator (writer features, plus delete comments), and admin (writer and moderator features, plus edit global pages and users)
+- Add / delete posts
+- Add / delete global pages
+- Post comments to posts
+- Contact form, to the specified address in dashboard 
