@@ -30,4 +30,3 @@ Log in to the admin panel at the address `/dashboard/login`. If you use the fake
 
 email: `admin@email.com`
 password: `Password42`
-
