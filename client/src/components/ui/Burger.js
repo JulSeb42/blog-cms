@@ -9,7 +9,10 @@ import * as Variables from "../styles/Variables"
 const Container = styled.button`
     display: none;
 
-    @media ${Variables.Breakpoints.Tablet} {
+    @media ${props =>
+            props.header
+                ? Variables.Breakpoints.Mobile
+                : Variables.Breakpoints.Tablet} {
         display: inline;
         position: ${props => (props.dashboard ? "fixed" : "relative")};
         background: none;
