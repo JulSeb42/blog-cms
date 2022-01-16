@@ -100,11 +100,31 @@ export const Em = styled.em`
 `
 
 export const Label = styled.label`
-    font-size: ${Variables.FontSizes.Label};
     font-weight: ${props => props.weight || Variables.FontWeights.Regular};
     color: ${props => props.color || Variables.Colors.FontColor};
     font-size: ${props =>
         props.big ? Variables.FontSizes.Body : Variables.FontWeights.Label};
+
+    strong {
+        font-weight: ${Variables.FontWeights.Bold};
+    }
+
+    a {
+        color: ${Variables.Colors.Primary};
+        font-weight: ${Variables.FontWeights.Bold};
+        text-decoration: none;
+        transition: ${Variables.Transitions.Short};
+
+        &:hover {
+            color: ${Variables.Colors.Primary70};
+        }
+    }
+`
+
+export const Small = styled.small`
+    font-size: ${Variables.FontSizes.Label};
+    font-weight: ${Variables.FontWeights.Regular};
+    color: ${Variables.Colors.FontColor};
 
     strong {
         font-weight: ${Variables.FontWeights.Bold};
