@@ -39,3 +39,7 @@ password: `Password42`
 - Add / delete global pages
 - Post comments to posts
 - Contact form, to the specified address in dashboard 
+
+## Editor
+
+This app uses a markdown editor for the posts. To add React components to use inside, you can add them to the page `/client/pages/posts/PostDetail.js` inside the `const options/overrides`.
