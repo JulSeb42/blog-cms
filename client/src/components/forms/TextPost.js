@@ -1,48 +1,14 @@
 // Packages
 import React from "react"
-import ReactQuill from "react-quill"
-import "react-quill/dist/quill.snow.css"
-import styled from "styled-components"
+import MDEditor from "@uiw/react-md-editor"
 
 // Components
 import InputContainer from "./InputContainer"
-import * as Variables from "../styles/Variables"
-
-// Styles
-const Input = styled(ReactQuill)`
-    .ql-toolbar {
-        border-color: ${Variables.Colors.LightGray};
-        border-radius: ${Variables.Radiuses.S} ${Variables.Radiuses.S} 0 0;
-    }
-
-    .ql-container {
-        height: auto;
-        min-height: calc(
-            ${Variables.FontSizes.Body} * 10 + ${Variables.FontSizes.Body} *
-                ${Variables.LineHeight}
-        );
-        border-color: ${Variables.Colors.LightGray};
-        border-radius: 0 0 ${Variables.Radiuses.S} ${Variables.Radiuses.S};
-
-        .ql-editor {
-            height: 100%;
-            min-height: calc(
-                ${Variables.FontSizes.Body} * 10 + ${Variables.FontSizes.Body} *
-                    ${Variables.LineHeight}
-            );
-        }
-    }
-`
 
 function TextPost(props) {
     return (
         <InputContainer label={props.label} id={props.id}>
-            <Input
-                theme="snow"
-                height={200}
-                value={props.value}
-                onChange={props.onChange}
-            />
+            <MDEditor value={props.value} onChange={props.onChange} />
         </InputContainer>
     )
 }

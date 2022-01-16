@@ -134,7 +134,7 @@ function Header(props) {
         <Container top={topPosition} {...props}>
             <Logo to="/">{GlobalData().name}</Logo>
 
-            <Burger className={open} onClick={() => setIsOpen(!isOpen)} />
+            <Burger header className={open} onClick={() => setIsOpen(!isOpen)} />
 
             <Nav className={open}>
                 {Links.map((link, i) => (

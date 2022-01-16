@@ -1,5 +1,6 @@
 // Packages
 import React from "react"
+import Markdown from "markdown-to-jsx"
 
 // Components
 import Page from "../../components/layouts/Page"
@@ -10,9 +11,44 @@ import Aside from "../../components/layouts/Aside"
 import UserCard from "../../components/user/UserCard"
 import Breadcrumbs from "../../components/layouts/Breadcrumbs"
 import CommentsContainer from "../../components/comments/CommentsContainer"
+import Link from "../../components/utils/LinkScroll"
 
 // Utils
 import slugify from "../../components/utils/slugify"
+
+const options = {
+    forceBlock: true,
+    wrapper: Article,
+    overrides: {
+        h2: {
+            component: Font.H2,
+        },
+        
+        h3: {
+            component: Font.H3,
+        },
+        
+        h4: {
+            component: Font.H4,
+        },
+        
+        h5: {
+            component: Font.H5,
+        },
+        
+        h6: {
+            component: Font.H6,
+        },
+        
+        // a: {
+        //     component: Link,
+        // },
+
+        Link: {
+            component: Link,
+        }
+    },
+}
 
 function PostDetail({ post, ...props }) {
     // Breadcrumbs
@@ -46,11 +82,16 @@ function PostDetail({ post, ...props }) {
                 <Content>
                     <Breadcrumbs items={BreadcrumbsLinks} />
 
-                    <Article dangerouslySetInnerHTML={{ __html: post.body }} />
+                    <Markdown options={options}>
+                        {post.body}
+                    </Markdown>
 
                     <UserCard user={post.author} />
 
-                    <CommentsContainer postId={post._id} comments={post.comments} />
+                    <CommentsContainer
+                        postId={post._id}
+                        comments={post.comments}
+                    />
                 </Content>
 
                 <Aside />
