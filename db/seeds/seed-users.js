@@ -10,9 +10,9 @@ const password = "Password42"
 const salt = bcrypt.genSaltSync()
 const hash = bcrypt.hashSync(password, salt)
 
-const convertToEmail = require("../utils/convertToEmail")
-const getRandomString = require("../utils/getRandomString")
-const getRandom = require("../utils/getRandom")
+const convertToEmail = require("../../utils/convertToEmail")
+const getRandomString = require("../../utils/getRandomString")
+const getRandom = require("../../utils/getRandom")
 
 const names = [
     "Admin",
