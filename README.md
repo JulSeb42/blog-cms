@@ -17,6 +17,8 @@ MONGODB_URI=mongodb://localhost/blog-cms
 EMAIL=your.email@gmail.com
 WORD=YourPassword
 
+TOKEN_SECRET=RanDomSecREtKey42
+
 CLOUDINARY_NAME=your-cloudinary-name
 CLOUDINARY_KEY=your-cloudinary-key
 CLOUDINARY_SECRET=your-cloudinary-secret
