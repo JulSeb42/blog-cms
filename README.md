@@ -22,6 +22,8 @@ CLOUDINARY_KEY=your-cloudinary-key
 CLOUDINARY_SECRET=your-cloudinary-secret
 ```
 
+Then run `db/seeds/create-empty-global.js` to create an empty MongoDb collection with global data.
+
 ### Seed data
 
 If you want to create fake data, you can use the json files in the `db` folder. Simply import all the files to MongoDb.
@@ -44,4 +46,4 @@ password: `Password42`
 
 ## Editor
 
-This app uses a markdown editor for the posts. To add React components to use inside, you can add them to the page `/client/pages/posts/PostDetail.js` inside the `const options/overrides`.
+This app uses a markdown editor for the posts. To add React components to use inside, you can add them to the page `/client/src/config/markdownConfig.js` inside the `const markdownConfig/overrides`.

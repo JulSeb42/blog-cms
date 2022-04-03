@@ -1,0 +1,55 @@
+[{
+  "_id": {
+    "$oid": "624a0e498477191809a735b3"
+  },
+  "poster": "Anna",
+  "body": "So true!",
+  "date": "2022-04-03",
+  "time": "23:14",
+  "post": {
+    "$oid": "6249883f9e4be39ebc9e6df8"
+  },
+  "createdAt": {
+    "$date": "2022-04-03T21:14:49.491Z"
+  },
+  "updatedAt": {
+    "$date": "2022-04-03T21:14:49.491Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "624a0e668477191809a735bf"
+  },
+  "poster": "Emma",
+  "body": "Love it ❤️",
+  "date": "2022-04-03",
+  "time": "23:15",
+  "post": {
+    "$oid": "6249883f9e4be39ebc9e6df8"
+  },
+  "createdAt": {
+    "$date": "2022-04-03T21:15:18.252Z"
+  },
+  "updatedAt": {
+    "$date": "2022-04-03T21:15:18.252Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "624a0e8a8477191809a735d6"
+  },
+  "poster": "Jack",
+  "body": "It's so cool!",
+  "date": "2022-04-03",
+  "time": "23:15",
+  "post": {
+    "$oid": "6249883f9e4be39ebc9e6de1"
+  },
+  "createdAt": {
+    "$date": "2022-04-03T21:15:54.623Z"
+  },
+  "updatedAt": {
+    "$date": "2022-04-03T21:15:54.623Z"
+  },
+  "__v": 0
+}]

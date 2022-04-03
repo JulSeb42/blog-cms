@@ -1,0 +1,301 @@
+[{
+  "_id": {
+    "$oid": "62399c8b05749e1a7d1b9e11"
+  },
+  "email": "admin@email.com",
+  "fullName": "Admin",
+  "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  "password": "$2a$10$r8p/DUMnU7QYKOrgmufzOeJunjqK8eSKYfrRILNl4Htb4whjgJsnC",
+  "imageUrl": "https://randomuser.me/api/portraits/men/0.jpg",
+  "verified": true,
+  "verifyToken": "iLnr7Ac3x1q465FKndti",
+  "role": "admin",
+  "approved": true,
+  "featured": true,
+  "posts": [
+    {
+      "$oid": "62399ca1ad2576258875ffc8"
+    },
+    {
+      "$oid": "62399ca1ad2576258875ffcd"
+    },
+    {
+      "$oid": "62399ca1ad2576258875ffd2"
+    },
+    {
+      "$oid": "623a20bd0cc7bd025d71be37"
+    },
+    {
+      "$oid": "6249883f9e4be39ebc9e6de1"
+    },
+    {
+      "$oid": "6249883f9e4be39ebc9e6de6"
+    },
+    {
+      "$oid": "6249883f9e4be39ebc9e6de8"
+    },
+    {
+      "$oid": "624a0bf2d6c52a13dc445237"
+    }
+  ],
+  "__v": 0,
+  "createdAt": {
+    "$date": "2022-03-22T09:53:15.725Z"
+  },
+  "updatedAt": {
+    "$date": "2022-04-03T21:04:50.973Z"
+  }
+},{
+  "_id": {
+    "$oid": "62399c8b05749e1a7d1b9e12"
+  },
+  "email": "dirk.faber@email.com",
+  "fullName": "Dirk Faber",
+  "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  "password": "$2a$10$6Cd2L8RDnyeD7GBDlMvdh.53BPm7P5ozOhTaCTexf2OXTQapQ9qA.",
+  "imageUrl": "https://randomuser.me/api/portraits/men/1.jpg",
+  "verified": true,
+  "verifyToken": "EpXUXVv60oFFlVA1MRDt",
+  "role": "moderator",
+  "approved": true,
+  "featured": false,
+  "posts": [
+    {
+      "$oid": "62399ca1ad2576258875ffc5"
+    },
+    {
+      "$oid": "62399ca1ad2576258875ffcf"
+    },
+    {
+      "$oid": "62399ca1ad2576258875ffd1"
+    },
+    {
+      "$oid": "62399ca1ad2576258875ffd9"
+    },
+    {
+      "$oid": "6249883f9e4be39ebc9e6de0"
+    },
+    {
+      "$oid": "6249883f9e4be39ebc9e6de3"
+    },
+    {
+      "$oid": "6249883f9e4be39ebc9e6de7"
+    },
+    {
+      "$oid": "6249883f9e4be39ebc9e6de9"
+    },
+    {
+      "$oid": "6249883f9e4be39ebc9e6dea"
+    },
+    {
+      "$oid": "6249883f9e4be39ebc9e6def"
+    },
+    {
+      "$oid": "6249883f9e4be39ebc9e6df2"
+    },
+    {
+      "$oid": "6249883f9e4be39ebc9e6df5"
+    }
+  ],
+  "__v": 0,
+  "createdAt": {
+    "$date": "2022-03-22T09:53:15.725Z"
+  },
+  "updatedAt": {
+    "$date": "2022-04-03T20:58:32.153Z"
+  }
+},{
+  "_id": {
+    "$oid": "62399c8b05749e1a7d1b9e13"
+  },
+  "email": "jan.kuester@email.com",
+  "fullName": "Jan Kuester",
+  "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  "password": "$2a$10$6Cd2L8RDnyeD7GBDlMvdh.53BPm7P5ozOhTaCTexf2OXTQapQ9qA.",
+  "imageUrl": "https://randomuser.me/api/portraits/men/2.jpg",
+  "verified": true,
+  "verifyToken": "1tDoZtaruZ6mNVtSyUs5",
+  "role": "writer",
+  "approved": true,
+  "featured": true,
+  "posts": [
+    {
+      "$oid": "62399ca1ad2576258875ffc7"
+    },
+    {
+      "$oid": "62399ca1ad2576258875ffca"
+    },
+    {
+      "$oid": "62399ca1ad2576258875ffd3"
+    },
+    {
+      "$oid": "62399ca1ad2576258875ffd5"
+    },
+    {
+      "$oid": "6249883f9e4be39ebc9e6ded"
+    },
+    {
+      "$oid": "6249883f9e4be39ebc9e6dee"
+    },
+    {
+      "$oid": "6249883f9e4be39ebc9e6df4"
+    }
+  ],
+  "__v": 0,
+  "createdAt": {
+    "$date": "2022-03-22T09:53:15.725Z"
+  },
+  "updatedAt": {
+    "$date": "2022-04-03T20:58:32.153Z"
+  }
+},{
+  "_id": {
+    "$oid": "62399c8b05749e1a7d1b9e14"
+  },
+  "email": "katja.osterhagen@email.com",
+  "fullName": "Katja Osterhagen",
+  "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  "password": "$2a$10$6Cd2L8RDnyeD7GBDlMvdh.53BPm7P5ozOhTaCTexf2OXTQapQ9qA.",
+  "imageUrl": "https://randomuser.me/api/portraits/women/3.jpg",
+  "verified": true,
+  "verifyToken": "1gDFGYzwZOVcZjP6JXdi",
+  "role": "moderator",
+  "approved": true,
+  "featured": true,
+  "posts": [
+    {
+      "$oid": "62399ca1ad2576258875ffc0"
+    },
+    {
+      "$oid": "62399ca1ad2576258875ffc1"
+    },
+    {
+      "$oid": "62399ca1ad2576258875ffc6"
+    },
+    {
+      "$oid": "6249883f9e4be39ebc9e6de2"
+    },
+    {
+      "$oid": "6249883f9e4be39ebc9e6dec"
+    },
+    {
+      "$oid": "6249883f9e4be39ebc9e6df6"
+    },
+    {
+      "$oid": "6249883f9e4be39ebc9e6df8"
+    }
+  ],
+  "__v": 0,
+  "createdAt": {
+    "$date": "2022-03-22T09:53:15.725Z"
+  },
+  "updatedAt": {
+    "$date": "2022-04-03T20:58:32.153Z"
+  }
+},{
+  "_id": {
+    "$oid": "62399c8b05749e1a7d1b9e15"
+  },
+  "email": "daniela.loewe@email.com",
+  "fullName": "Daniela Loewe",
+  "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  "password": "$2a$10$6Cd2L8RDnyeD7GBDlMvdh.53BPm7P5ozOhTaCTexf2OXTQapQ9qA.",
+  "imageUrl": "https://randomuser.me/api/portraits/women/4.jpg",
+  "verified": true,
+  "verifyToken": "lohEg1pYnsYG8tLwPGNj",
+  "role": "writer",
+  "approved": true,
+  "featured": false,
+  "posts": [
+    {
+      "$oid": "62399ca1ad2576258875ffc3"
+    },
+    {
+      "$oid": "62399ca1ad2576258875ffc9"
+    },
+    {
+      "$oid": "62399ca1ad2576258875ffd0"
+    },
+    {
+      "$oid": "62399ca1ad2576258875ffd6"
+    },
+    {
+      "$oid": "6249883f9e4be39ebc9e6de4"
+    },
+    {
+      "$oid": "6249883f9e4be39ebc9e6df1"
+    },
+    {
+      "$oid": "6249883f9e4be39ebc9e6df7"
+    },
+    {
+      "$oid": "6249883f9e4be39ebc9e6df9"
+    }
+  ],
+  "__v": 0,
+  "createdAt": {
+    "$date": "2022-03-22T09:53:15.725Z"
+  },
+  "updatedAt": {
+    "$date": "2022-04-03T20:58:32.153Z"
+  }
+},{
+  "_id": {
+    "$oid": "62399c8b05749e1a7d1b9e16"
+  },
+  "email": "jennifer.eisenhauer@email.com",
+  "fullName": "Jennifer Eisenhauer",
+  "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  "password": "$2a$10$6Cd2L8RDnyeD7GBDlMvdh.53BPm7P5ozOhTaCTexf2OXTQapQ9qA.",
+  "imageUrl": "https://randomuser.me/api/portraits/women/5.jpg",
+  "verified": true,
+  "verifyToken": "K7G5uZmeJkixj0movlyy",
+  "role": "writer",
+  "approved": true,
+  "featured": false,
+  "posts": [
+    {
+      "$oid": "62399ca1ad2576258875ffc2"
+    },
+    {
+      "$oid": "62399ca1ad2576258875ffc4"
+    },
+    {
+      "$oid": "62399ca1ad2576258875ffcb"
+    },
+    {
+      "$oid": "62399ca1ad2576258875ffcc"
+    },
+    {
+      "$oid": "62399ca1ad2576258875ffce"
+    },
+    {
+      "$oid": "62399ca1ad2576258875ffd4"
+    },
+    {
+      "$oid": "62399ca1ad2576258875ffd7"
+    },
+    {
+      "$oid": "62399ca1ad2576258875ffd8"
+    },
+    {
+      "$oid": "6249883f9e4be39ebc9e6de5"
+    },
+    {
+      "$oid": "6249883f9e4be39ebc9e6deb"
+    },
+    {
+      "$oid": "6249883f9e4be39ebc9e6df0"
+    },
+    {
+      "$oid": "6249883f9e4be39ebc9e6df3"
+    }
+  ],
+  "__v": 0,
+  "createdAt": {
+    "$date": "2022-03-22T09:53:15.725Z"
+  },
+  "updatedAt": {
+    "$date": "2022-04-03T20:58:32.153Z"
+  }
+}]

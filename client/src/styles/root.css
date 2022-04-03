@@ -1,0 +1,27 @@
+/*=============================================== Root ===============================================*/
+
+/* Add here your overrides */
+
+:root {
+    --color-primary-500: #333333;
+    --color-primary-300: #737373;
+    --color-primary-600: #262626;
+    --color-primary-50: #f2f2f2;
+    --color-secondary-500: #00abe1;
+    --color-secondary-300: #61d9ff;
+    --color-secondary-600: #0097c7;
+    --color-secondary-50: #e5f9ff;
+    --color-success-500: #62c370;
+    --color-success-300: #bde6c3;
+    --color-success-600: #4ebb5e;
+    --color-success-50: #edf8ee;
+    --color-danger-500: #bb0a21;
+    --color-danger-300: #f65166;
+    --color-danger-600: #a5091d;
+    --color-danger-50: #fee7ea;
+    --color-warning-500: #f45d01;
+    --color-warning-300: #feaa76;
+    --color-warning-600: #da5301;
+    --color-warning-50: #ffefe6;
+    --color-black: #040f16;
+}

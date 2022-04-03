@@ -1,0 +1,23 @@
+[{
+  "_id": {
+    "$oid": "624322405f27a7b052e61701"
+  },
+  "name": "Amazing blog",
+  "baseline": "We're the best blog ever",
+  "metaDescription": "Meta description for this site",
+  "favicon": "https://res.cloudinary.com/dyfxmafvr/image/upload/v1648672307/blog-new/yuwhvdkfw67fpcgphmd5.ico",
+  "email": "julien.sebag.apps@gmail.com",
+  "cover": "https://res.cloudinary.com/dyfxmafvr/image/upload/v1648672360/blog-new/ytdhzbdl5rzsmyayzwun.jpg",
+  "keywords": [
+    "blog,lifestyle,berlin"
+  ],
+  "__v": 0,
+  "createdAt": {
+    "$date": "2022-03-29T15:14:08.342Z"
+  },
+  "updatedAt": {
+    "$date": "2022-03-31T20:27:14.313Z"
+  },
+  "language": "en",
+  "type": ""
+}]
